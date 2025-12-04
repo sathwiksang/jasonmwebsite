@@ -9,35 +9,40 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     
     :root {
-      --cream: #FAF6F0;
-      --sand: #EDE6DA;
-      --tan: #D4C4AC;
-      --caramel: #C4A67C;
-      --bronze: #A68B5B;
-      --copper: #8B7355;
-      --walnut: #5C4A3D;
-      --espresso: #3D2E24;
-      --deep: #2A1F18;
-      --forest: #3B4A3F;
-      --sage: #6B7D6B;
-      --text: #3D2E24;
-      --text-light: #6B5D52;
+      --bg-ivory: #F8F6F1;
+      --bg-cream: #F3F0E8;
+      --bg-warm: #EBE6DB;
+      --navy: #1B2B3A;
+      --navy-light: #2A3F52;
+      --navy-dark: #0F1A24;
+      --gold: #B8956E;
+      --gold-light: #D4B896;
+      --gold-dark: #96754A;
+      --forest: #3D4F44;
+      --text: #1B2B3A;
+      --text-muted: #5D6A75;
+      --text-subtle: #8A9299;
+      --border: rgba(27,43,58,0.1);
+      --border-gold: rgba(184,149,110,0.3);
+      --shadow-sm: 0 2px 20px rgba(27,43,58,0.06);
+      --shadow-md: 0 8px 40px rgba(27,43,58,0.1);
+      --shadow-lg: 0 20px 60px rgba(27,43,58,0.12);
     }
     
     html { scroll-behavior: smooth; }
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
+      background: var(--bg-ivory);
       color: var(--text);
       line-height: 1.7;
     }
     
     .serif { font-family: 'Playfair Display', serif; }
-    ::selection { background: var(--bronze); color: white; }
+    ::selection { background: var(--gold); color: white; }
     
     /* Top Bar */
     .top-bar {
-      background: var(--espresso);
+      background: var(--navy-dark);
       padding: 10px 60px;
       display: flex;
       justify-content: space-between;
@@ -60,7 +65,7 @@
       transition: color 0.3s;
     }
     
-    .top-bar a:hover { color: var(--caramel); }
+    .top-bar a:hover { color: var(--gold-light); }
     .top-bar svg { width: 14px; height: 14px; }
     
     .top-bar-right {
@@ -78,11 +83,11 @@
       transition: color 0.3s;
     }
     
-    .top-bar-right a:hover { color: var(--caramel); }
-    
+    .top-bar-right a:hover { color: var(--gold); }
+
     /* Navigation */
     nav {
-      background: var(--cream);
+      background: var(--bg-ivory);
       padding: 20px 60px;
       display: flex;
       justify-content: space-between;
@@ -90,16 +95,19 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid var(--sand);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
     }
     
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.625rem;
       font-weight: 500;
-      color: var(--espresso);
+      color: var(--navy);
       text-decoration: none;
     }
+    
+    .logo span { color: var(--gold); }
     
     .nav-center {
       display: flex;
@@ -108,29 +116,33 @@
     }
     
     .nav-center a {
-      color: var(--text-light);
+      color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
       font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       transition: color 0.3s;
     }
     
-    .nav-center a:hover { color: var(--espresso); }
+    .nav-center a:hover { color: var(--navy); }
     
     .nav-cta {
       padding: 14px 28px;
-      background: var(--espresso);
+      background: var(--navy);
       color: white;
-      font-size: 0.8125rem;
+      font-size: 0.75rem;
       font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       text-decoration: none;
       transition: all 0.3s;
     }
     
-    .nav-cta:hover { background: var(--bronze); }
+    .nav-cta:hover { background: var(--gold-dark); transform: translateY(-2px); }
     
     .mobile-menu { display: none; cursor: pointer; }
-    .mobile-menu span { display: block; width: 24px; height: 2px; background: var(--espresso); margin: 5px 0; }
+    .mobile-menu span { display: block; width: 24px; height: 2px; background: var(--navy); margin: 5px 0; }
 
     /* Hero */
     .hero {
@@ -140,7 +152,7 @@
     }
     
     .hero-content {
-      background: linear-gradient(135deg, var(--sand) 0%, var(--tan) 100%);
+      background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-warm) 100%);
       padding: 80px 60px;
       display: flex;
       flex-direction: column;
@@ -151,10 +163,11 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: var(--cream);
+      background: white;
       padding: 10px 20px;
       width: fit-content;
       margin-bottom: 32px;
+      border: 1px solid var(--border-gold);
     }
     
     .hero-badge span {
@@ -162,28 +175,28 @@
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--bronze);
+      color: var(--gold-dark);
     }
     
-    .hero-badge svg { width: 16px; height: 16px; color: var(--caramel); }
+    .hero-badge svg { width: 16px; height: 16px; color: var(--gold); }
     
     .hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.75rem, 5vw, 4rem);
       font-weight: 400;
       line-height: 1.1;
-      color: var(--espresso);
+      color: var(--navy);
       margin-bottom: 24px;
     }
     
     .hero h1 em {
       font-style: italic;
-      color: var(--bronze);
+      color: var(--gold-dark);
     }
     
     .hero-text {
       font-size: 1.0625rem;
-      color: var(--walnut);
+      color: var(--text-muted);
       max-width: 480px;
       line-height: 1.85;
       margin-bottom: 40px;
@@ -200,15 +213,17 @@
       align-items: center;
       gap: 12px;
       padding: 18px 36px;
-      background: var(--espresso);
+      background: var(--navy);
       color: white;
-      font-size: 0.8125rem;
+      font-size: 0.75rem;
       font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       text-decoration: none;
       transition: all 0.3s;
     }
     
-    .btn-dark:hover { background: var(--deep); transform: translateY(-2px); }
+    .btn-dark:hover { background: var(--gold-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
     .btn-dark svg { width: 16px; height: 16px; }
     
     .btn-outline {
@@ -217,15 +232,17 @@
       gap: 12px;
       padding: 18px 36px;
       background: transparent;
-      border: 1.5px solid var(--walnut);
-      color: var(--walnut);
-      font-size: 0.8125rem;
+      border: 1.5px solid var(--navy);
+      color: var(--navy);
+      font-size: 0.75rem;
       font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       text-decoration: none;
       transition: all 0.3s;
     }
     
-    .btn-outline:hover { background: var(--walnut); color: white; }
+    .btn-outline:hover { background: var(--navy); color: white; }
     
     .hero-stats {
       display: flex;
@@ -236,31 +253,32 @@
       font-family: 'Playfair Display', serif;
       font-size: 3rem;
       font-weight: 400;
-      color: var(--espresso);
+      color: var(--navy);
       line-height: 1;
     }
     
-    .hero-stat h3 span { color: var(--bronze); }
+    .hero-stat h3 span { color: var(--gold); }
     
     .hero-stat p {
       font-size: 0.75rem;
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--copper);
+      color: var(--text-subtle);
       margin-top: 6px;
     }
     
     .hero-visual {
       position: relative;
-      background: var(--walnut);
+      background: var(--navy);
     }
     
     .hero-image {
       position: absolute;
       inset: 0;
       background: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80') center/cover;
-      opacity: 0.85;
+      opacity: 0.7;
+      mix-blend-mode: luminosity;
     }
     
     .hero-overlay {
@@ -269,7 +287,7 @@
       left: 0;
       right: 0;
       padding: 48px;
-      background: linear-gradient(0deg, rgba(42,31,24,0.95) 0%, transparent 100%);
+      background: linear-gradient(0deg, rgba(27,43,58,0.95) 0%, transparent 100%);
     }
     
     .hero-overlay p {
@@ -279,11 +297,13 @@
       font-style: italic;
       line-height: 1.6;
       max-width: 400px;
+      border-left: 2px solid var(--gold);
+      padding-left: 20px;
     }
 
     /* Trust Bar */
     .trust-bar {
-      background: var(--espresso);
+      background: var(--navy);
       padding: 32px 60px;
       display: flex;
       justify-content: center;
@@ -294,16 +314,17 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.85);
     }
     
-    .trust-item svg { width: 24px; height: 24px; color: var(--caramel); }
+    .trust-item svg { width: 24px; height: 24px; color: var(--gold); }
     .trust-item span { font-size: 0.875rem; font-weight: 500; }
 
     /* About */
     .about {
       padding: 120px 60px;
-      background: var(--cream);
+      background: var(--navy);
+      color: white;
       position: relative;
       overflow: hidden;
     }
@@ -319,8 +340,6 @@
     
     .about-image-container {
       position: relative;
-      padding: 24px;
-      background: linear-gradient(135deg, var(--sand) 0%, var(--tan) 100%);
       max-width: 450px;
     }
     
@@ -328,28 +347,17 @@
       position: relative;
       aspect-ratio: 3/4;
       overflow: hidden;
-      box-shadow: 0 24px 48px rgba(61, 46, 36, 0.2);
       max-height: 500px;
     }
     
     .about-image-wrapper::before {
       content: '';
       position: absolute;
-      inset: -20px;
-      border: 3px solid var(--caramel);
-      z-index: -1;
-      opacity: 0.3;
-    }
-    
-    .about-image-wrapper::after {
-      content: '';
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 120px;
-      height: 120px;
-      background: var(--bronze);
-      opacity: 0.1;
+      top: 24px;
+      left: 24px;
+      right: -24px;
+      bottom: -24px;
+      border: 1px solid var(--gold);
       z-index: -1;
     }
     
@@ -360,12 +368,32 @@
       transition: transform 0.6s ease;
     }
     
-    .about-image-wrapper:hover img {
-      transform: scale(1.05);
+    .about-image-wrapper:hover img { transform: scale(1.05); }
+    
+    .about-badge {
+      position: absolute;
+      bottom: -30px;
+      right: -30px;
+      background: var(--gold);
+      padding: 32px 36px;
+      text-align: center;
     }
     
-    .about-content {
-      position: relative;
+    .about-badge h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.75rem;
+      font-weight: 500;
+      color: white;
+      line-height: 1;
+    }
+    
+    .about-badge p {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      margin-top: 6px;
     }
     
     .about-content .section-tag {
@@ -373,9 +401,18 @@
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--bronze);
+      color: var(--gold-light);
       margin-bottom: 20px;
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .about-content .section-tag::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold-light);
     }
     
     .about-content h2 {
@@ -383,23 +420,12 @@
       font-size: clamp(2.25rem, 4vw, 3.25rem);
       font-weight: 400;
       line-height: 1.15;
-      color: var(--espresso);
+      color: white;
       margin-bottom: 32px;
-      position: relative;
-    }
-    
-    .about-content h2::after {
-      content: '';
-      position: absolute;
-      bottom: -16px;
-      left: 0;
-      width: 80px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--bronze) 0%, var(--caramel) 100%);
     }
     
     .about-content p {
-      color: var(--text-light);
+      color: rgba(255,255,255,0.75);
       margin-bottom: 24px;
       line-height: 1.9;
       font-size: 1rem;
@@ -407,19 +433,18 @@
     
     .about-content p:first-of-type {
       font-size: 1.1875rem;
-      color: var(--walnut);
-      font-weight: 500;
-      margin-top: 40px;
+      color: rgba(255,255,255,0.9);
+      margin-top: 8px;
     }
     
     .about-highlights {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 16px;
       margin: 32px 0;
-      padding: 32px;
-      background: var(--sand);
-      border-left: 4px solid var(--bronze);
+      padding: 28px;
+      background: rgba(255,255,255,0.05);
+      border-left: 3px solid var(--gold);
     }
     
     .about-highlight {
@@ -429,74 +454,46 @@
     }
     
     .about-highlight svg {
-      width: 20px;
-      height: 20px;
-      color: var(--bronze);
+      width: 18px;
+      height: 18px;
+      color: var(--gold);
       flex-shrink: 0;
       margin-top: 2px;
     }
     
     .about-highlight span {
       font-size: 0.9375rem;
-      color: var(--walnut);
-      line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
     }
     
     .about-signature {
       margin-top: 40px;
       padding-top: 32px;
-      border-top: 2px solid var(--tan);
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      position: relative;
-    }
-    
-    .signature-img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 4px solid var(--caramel);
-      box-shadow: 0 8px 16px rgba(61, 46, 36, 0.15);
-      flex-shrink: 0;
-    }
-    
-    .signature-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
     
     .signature-text h4 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--espresso);
-      margin-bottom: 4px;
-    }
-    
-    .signature-text p {
-      font-size: 0.875rem;
-      color: var(--copper);
-      margin: 0;
-      font-weight: 500;
+      font-size: 2rem;
+      font-style: italic;
+      color: var(--gold-light);
     }
     
     .about-decoration {
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(196, 166, 124, 0.08) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(184,149,110,0.08) 0%, transparent 70%);
       pointer-events: none;
-      z-index: 1;
     }
 
     /* Services */
     .services {
       padding: 120px 60px;
-      background: var(--sand);
+      background: var(--bg-cream);
     }
     
     .services-header {
@@ -510,20 +507,31 @@
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--bronze);
+      color: var(--gold-dark);
       margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .services-header .section-tag::before,
+    .services-header .section-tag::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
     }
     
     .services-header h2 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 3.5vw, 2.75rem);
       font-weight: 400;
-      color: var(--espresso);
+      color: var(--navy);
       margin-bottom: 16px;
     }
     
     .services-header p {
-      color: var(--text-light);
+      color: var(--text-muted);
       line-height: 1.8;
     }
     
@@ -534,15 +542,33 @@
     }
     
     .service-card {
-      background: var(--cream);
+      background: white;
       overflow: hidden;
       transition: all 0.4s;
+      border: 1px solid transparent;
+      position: relative;
+    }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
     }
     
     .service-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 24px 48px rgba(61,46,36,0.12);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-gold);
     }
+    
+    .service-card:hover::before { transform: scaleX(1); }
     
     .service-img {
       height: 200px;
@@ -566,12 +592,12 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       font-weight: 500;
-      color: var(--espresso);
+      color: var(--navy);
       margin-bottom: 12px;
     }
     
     .service-body > p {
-      color: var(--text-light);
+      color: var(--text-muted);
       font-size: 0.9375rem;
       line-height: 1.75;
       margin-bottom: 24px;
@@ -579,7 +605,7 @@
     
     .service-list {
       list-style: none;
-      border-top: 1px solid var(--sand);
+      border-top: 1px solid var(--border);
       padding-top: 20px;
     }
     
@@ -589,15 +615,15 @@
       gap: 12px;
       padding: 10px 0;
       font-size: 0.875rem;
-      color: var(--walnut);
+      color: var(--text-muted);
     }
     
-    .service-list svg { width: 16px; height: 16px; color: var(--bronze); }
+    .service-list svg { width: 16px; height: 16px; color: var(--gold); }
 
     /* Tools */
     .tools {
       padding: 120px 60px;
-      background: var(--cream);
+      background: linear-gradient(180deg, var(--bg-ivory) 0%, var(--bg-warm) 100%);
     }
     
     .tools-header {
@@ -607,24 +633,32 @@
       margin-bottom: 56px;
     }
     
-    .tools-header-left {
-      max-width: 500px;
-    }
+    .tools-header-left { max-width: 500px; }
     
     .tools-header .section-tag {
       font-size: 0.6875rem;
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--bronze);
+      color: var(--gold-dark);
       margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .tools-header .section-tag::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
     }
     
     .tools-header h2 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 3.5vw, 2.75rem);
       font-weight: 400;
-      color: var(--espresso);
+      color: var(--navy);
     }
     
     .tools-grid {
@@ -634,26 +668,40 @@
     }
     
     .tool-card {
-      padding: 40px 32px;
-      background: var(--sand);
-      border: 1px solid var(--tan);
+      padding: 40px 28px;
+      background: white;
+      border: 1px solid var(--border);
       text-decoration: none;
       color: inherit;
       transition: all 0.4s;
       display: block;
+      position: relative;
+    }
+    
+    .tool-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background: var(--gold);
+      transition: width 0.3s;
     }
     
     .tool-card:hover {
-      background: var(--cream);
-      border-color: var(--bronze);
+      border-color: var(--gold);
       transform: translateY(-6px);
-      box-shadow: 0 16px 32px rgba(61,46,36,0.1);
+      box-shadow: var(--shadow-md);
     }
     
+    .tool-card:hover::after { width: 60px; }
+    
     .tool-icon {
-      width: 56px;
-      height: 56px;
-      background: var(--cream);
+      width: 64px;
+      height: 64px;
+      background: var(--bg-cream);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -661,35 +709,28 @@
       transition: all 0.3s;
     }
     
-    .tool-card:hover .tool-icon { background: var(--espresso); }
-    
-    .tool-icon svg {
-      width: 24px;
-      height: 24px;
-      color: var(--bronze);
-      transition: color 0.3s;
-    }
-    
-    .tool-card:hover .tool-icon svg { color: var(--caramel); }
+    .tool-card:hover .tool-icon { background: var(--navy); }
+    .tool-icon svg { width: 26px; height: 26px; color: var(--gold-dark); transition: color 0.3s; }
+    .tool-card:hover .tool-icon svg { color: var(--gold-light); }
     
     .tool-card h4 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
+      font-size: 1.1875rem;
       font-weight: 500;
-      color: var(--espresso);
+      color: var(--navy);
       margin-bottom: 10px;
     }
     
     .tool-card p {
-      font-size: 0.875rem;
-      color: var(--text-light);
+      font-size: 0.8125rem;
+      color: var(--text-muted);
       line-height: 1.7;
     }
 
     /* Process */
     .process {
       padding: 120px 60px;
-      background: var(--walnut);
+      background: var(--forest);
       color: white;
     }
     
@@ -704,8 +745,19 @@
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--caramel);
+      color: var(--gold-light);
       margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .process-header .section-tag::before,
+    .process-header .section-tag::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold-light);
     }
     
     .process-header h2 {
@@ -724,34 +776,33 @@
     .process-steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
+      gap: 0;
     }
     
     .process-step {
       text-align: center;
-      padding: 40px 24px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      padding: 40px 32px;
+      border-right: 1px solid rgba(255,255,255,0.1);
       transition: all 0.3s;
     }
     
-    .process-step:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: var(--caramel);
-    }
+    .process-step:last-child { border: none; }
+    
+    .process-step:hover { background: rgba(255,255,255,0.05); }
     
     .step-num {
       font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
+      font-size: 4rem;
       font-weight: 400;
-      color: var(--caramel);
+      color: var(--gold);
       line-height: 1;
       margin-bottom: 20px;
+      opacity: 0.9;
     }
     
     .process-step h4 {
-      font-size: 0.875rem;
-      font-weight: 600;
+      font-size: 0.9375rem;
+      font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: white;
@@ -760,28 +811,41 @@
     
     .process-step p {
       font-size: 0.9375rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
     }
 
     /* Contact */
     .contact {
       padding: 120px 60px;
-      background: var(--sand);
+      background: var(--bg-ivory);
     }
     
     .contact-wrapper {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
       gap: 0;
-      background: var(--cream);
+      background: white;
       overflow: hidden;
+      box-shadow: var(--shadow-lg);
     }
     
     .contact-info {
       padding: 64px 56px;
-      background: var(--espresso);
+      background: var(--navy);
       color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .contact-info::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(184,149,110,0.1) 0%, transparent 70%);
     }
     
     .contact-info .section-tag {
@@ -789,8 +853,9 @@
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--caramel);
+      color: var(--gold-light);
       margin-bottom: 16px;
+      position: relative;
     }
     
     .contact-info h2 {
@@ -799,15 +864,17 @@
       font-weight: 400;
       color: white;
       margin-bottom: 16px;
+      position: relative;
     }
     
     .contact-info > p {
       color: rgba(255,255,255,0.7);
       margin-bottom: 40px;
       line-height: 1.8;
+      position: relative;
     }
     
-    .contact-details { list-style: none; }
+    .contact-details { list-style: none; position: relative; }
     
     .contact-details li {
       display: flex;
@@ -818,18 +885,15 @@
     }
     
     .contact-details li:last-child { border: none; }
-    .contact-details svg { width: 20px; height: 20px; color: var(--caramel); }
-    
-    .contact-details span {
-      font-size: 0.9375rem;
-      color: rgba(255,255,255,0.85);
-    }
+    .contact-details svg { width: 20px; height: 20px; color: var(--gold); }
+    .contact-details span { font-size: 0.9375rem; color: rgba(255,255,255,0.85); }
     
     .contact-options {
       padding: 64px 56px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      background: linear-gradient(180deg, white 0%, var(--bg-cream) 100%);
     }
     
     .contact-option {
@@ -837,52 +901,63 @@
       align-items: center;
       gap: 20px;
       padding: 28px 24px;
-      background: var(--sand);
+      background: white;
       text-decoration: none;
       color: inherit;
       margin-bottom: 16px;
       transition: all 0.3s;
-      border: 1px solid transparent;
+      border: 1px solid var(--border);
     }
     
     .contact-option:last-child { margin: 0; }
     
     .contact-option:hover {
-      background: var(--cream);
-      border-color: var(--bronze);
+      border-color: var(--gold);
       transform: translateX(8px);
+      box-shadow: var(--shadow-sm);
     }
     
     .contact-option-icon {
       width: 52px;
       height: 52px;
-      background: var(--cream);
+      background: var(--bg-cream);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      transition: all 0.3s;
     }
     
-    .contact-option:hover .contact-option-icon { background: var(--espresso); }
-    .contact-option-icon svg { width: 22px; height: 22px; color: var(--bronze); transition: color 0.3s; }
-    .contact-option:hover .contact-option-icon svg { color: var(--caramel); }
+    .contact-option:hover .contact-option-icon { background: var(--navy); }
+    .contact-option-icon svg { width: 22px; height: 22px; color: var(--gold-dark); transition: color 0.3s; }
+    .contact-option:hover .contact-option-icon svg { color: var(--gold-light); }
     
     .contact-option-text h4 {
       font-family: 'Playfair Display', serif;
       font-size: 1.1875rem;
       font-weight: 500;
-      color: var(--espresso);
+      color: var(--navy);
       margin-bottom: 4px;
     }
     
     .contact-option-text p {
       font-size: 0.8125rem;
-      color: var(--text-light);
+      color: var(--text-muted);
     }
+    
+    .contact-option-arrow {
+      margin-left: auto;
+      color: var(--gold);
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s;
+    }
+    
+    .contact-option:hover .contact-option-arrow { transform: translateX(6px); }
 
     /* Footer */
     footer {
-      background: var(--deep);
+      background: var(--navy-dark);
       padding: 80px 60px 40px;
       color: white;
     }
@@ -895,18 +970,14 @@
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     
-    .footer-brand h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 400;
-      margin-bottom: 16px;
-    }
+    .footer-brand .logo { font-size: 1.75rem; }
     
     .footer-brand p {
       color: rgba(255,255,255,0.5);
       font-size: 0.9375rem;
       line-height: 1.8;
       max-width: 280px;
+      margin-top: 20px;
     }
     
     .footer-heading {
@@ -914,7 +985,7 @@
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--caramel);
+      color: var(--gold-light);
       margin-bottom: 24px;
     }
     
@@ -933,8 +1004,8 @@
     .social-links { display: flex; gap: 12px; }
     
     .social-links a {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -943,7 +1014,7 @@
       transition: all 0.3s;
     }
     
-    .social-links a:hover { border-color: var(--caramel); color: var(--caramel); }
+    .social-links a:hover { border-color: var(--gold); color: var(--gold); background: rgba(184,149,110,0.1); }
     .social-links svg { width: 18px; height: 18px; }
     
     .footer-bottom {
@@ -966,7 +1037,6 @@
       .trust-bar { padding: 24px; gap: 32px; flex-wrap: wrap; justify-content: center; }
       .about { padding: 80px 24px; }
       .about-wrapper { grid-template-columns: 1fr; gap: 60px; }
-      .about-image-container { padding: 24px; }
       .about-highlights { grid-template-columns: 1fr; }
       .services { padding: 80px 24px; }
       .services-grid { grid-template-columns: 1fr; }
@@ -975,6 +1045,7 @@
       .tools-grid { grid-template-columns: repeat(2, 1fr); }
       .process { padding: 80px 24px; }
       .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .process-step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
       .contact { padding: 80px 24px; }
       .contact-wrapper { grid-template-columns: 1fr; }
       .contact-info, .contact-options { padding: 48px 24px; }
@@ -986,11 +1057,7 @@
       .top-bar { display: none; }
       .hero-stats { flex-direction: column; gap: 24px; }
       .hero-buttons { flex-direction: column; }
-      .about { padding: 60px 20px; }
-      .about-wrapper { gap: 40px; }
-      .about-image-container { padding: 16px; }
-      .about-content h2::after { width: 60px; }
-      .about-highlights { padding: 24px 20px; }
+      .btn-dark, .btn-outline { width: 100%; justify-content: center; }
       .tools-grid { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
@@ -1021,7 +1088,7 @@
 
   <!-- Navigation -->
   <nav>
-    <a href="#" class="logo">Jason Mathew</a>
+    <a href="#" class="logo">Jason<span>.</span>Mathew</a>
     <ul class="nav-center">
       <li><a href="#about">About</a></li>
       <li><a href="#expertise">Expertise</a></li>
@@ -1029,7 +1096,7 @@
       <li><a href="#process">Process</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Free Consultation</a>
+    <a href="#contact" class="nav-cta">Book a Call</a>
     <div class="mobile-menu"><span></span><span></span><span></span></div>
   </nav>
 
@@ -1038,16 +1105,16 @@
     <div class="hero-content">
       <div class="hero-badge">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-        <span>Trusted Investment Expert</span>
+        <span>Real Estate Investment Expert</span>
       </div>
-      <h1 class="serif">Build Lasting Wealth Through <em>Strategic Real Estate</em></h1>
-      <p class="hero-text">Real estate investor, entrepreneur, and mentor helping discerning individuals create financial freedom through mobile home investing, land deals, and intelligent wealth strategies.</p>
+      <h1 class="serif">Building Wealth Through <em>Strategic</em> Investments</h1>
+      <p class="hero-text">Real estate investor, entrepreneur, and mentor helping discerning individuals create lasting freedom through mobile home investing, land deals, and intelligent wealth strategies.</p>
       <div class="hero-buttons">
         <a href="#contact" class="btn-dark">
           <span>Schedule Consultation</span>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
-        <a href="#expertise" class="btn-outline">View Strategies</a>
+        <a href="#expertise" class="btn-outline">Explore Strategies</a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
@@ -1067,7 +1134,7 @@
     <div class="hero-visual">
       <div class="hero-image"></div>
       <div class="hero-overlay">
-        <p>"The best investment you can make is in assets that generate passive income for generations."</p>
+        <p>"The best investment you can make is in yourself and in assets that generate passive income."</p>
       </div>
     </div>
   </section>
@@ -1094,14 +1161,18 @@
     <div class="about-wrapper">
       <div class="about-image-container">
         <div class="about-image-wrapper">
-          <img src="jason.png" alt="Jason Mathew - Real Estate Investment Expert">
+          <img src="jason.png" alt="Jason Mathew">
+        </div>
+        <div class="about-badge">
+          <h4>15+</h4>
+          <p>Years Experience</p>
         </div>
       </div>
       <div class="about-content">
-        <span class="section-tag">About Jason</span>
+        <span class="section-tag">About</span>
         <h2 class="serif">A Disciplined Approach to Wealth Creation</h2>
-        <p>I began my journey in real estate with mobile homes, quickly recognizing their remarkable potential for generating cashflow and creating opportunities where others see obstacles.</p>
-        <p>Since then, I've expanded into land investing, equities, and building complementary businesses—always focusing on strategies that deliver tangible results in the real world.</p>
+        <p>I started my journey in real estate with mobile homes and quickly realized how powerful they are for generating cashflow and creating opportunities where others overlook them.</p>
+        <p>Since then, I've expanded into land investing, stocks, and building side businesses — all while learning which tools and strategies actually work in the real world.</p>
         <div class="about-highlights">
           <div class="about-highlight">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -1120,14 +1191,10 @@
             <span>Strategic Wealth Building Mentor</span>
           </div>
         </div>
-        <p>From flipping single units in parks to structuring sophisticated seller-financed deals, I've built a practice around helping buyers and sellers discover mutually beneficial solutions.</p>
+        <p>From flipping single units in parks to structuring seller-financed deals, I've built a business around helping buyers and sellers find win-win solutions.</p>
         <div class="about-signature">
-          <div class="signature-img">
-            <img src="jason.png" alt="Jason Mathew">
-          </div>
           <div class="signature-text">
             <h4 class="serif">Jason Mathew</h4>
-            <p>Real Estate Investment Expert</p>
           </div>
         </div>
       </div>
@@ -1139,7 +1206,7 @@
     <div class="services-header">
       <p class="section-tag">Investment Strategies</p>
       <h2 class="serif">Proven Methods for Building Generational Wealth</h2>
-      <p>Discover the methodologies I employ to build lasting wealth through strategic real estate investments.</p>
+      <p>Discover the cutting-edge strategies I use to build lasting wealth through strategic real estate investments.</p>
     </div>
     <div class="services-grid">
       <div class="service-card">
@@ -1163,7 +1230,7 @@
         </div>
         <div class="service-body">
           <h3>Land Investing</h3>
-          <p>Unlock growth potential through strategic raw land acquisition. No tenants, no toilets—pure opportunity.</p>
+          <p>Unlock growth potential through strategic raw land acquisition. No tenants, no toilets — pure opportunity.</p>
           <ul class="service-list">
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Market Trend Analysis</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Zoning Navigation</li>
@@ -1177,7 +1244,7 @@
           <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80" alt="Wealth">
         </div>
         <div class="service-body">
-          <h3>Wealth Building</h3>
+          <h3>Investing & Wealth</h3>
           <p>Build long-term wealth through strategic stock investing, options, and diversified income streams.</p>
           <ul class="service-list">
             <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Covered Calls & LEAPS</li>
@@ -1195,7 +1262,7 @@
     <div class="tools-header">
       <div class="tools-header-left">
         <p class="section-tag">Resources</p>
-        <h2 class="serif">Professional Investment Tools</h2>
+        <h2 class="serif">Professional-Grade Investment Tools</h2>
       </div>
     </div>
     <div class="tools-grid">
@@ -1266,7 +1333,7 @@
     <div class="contact-wrapper">
       <div class="contact-info">
         <p class="section-tag">Get Started</p>
-        <h2 class="serif">Let's Build Your Wealth Together</h2>
+        <h2 class="serif">Let's Build Your Wealth</h2>
         <p>Ready to create lasting financial freedom? I'm here to guide you every step of the way.</p>
         <ul class="contact-details">
           <li>
@@ -1292,6 +1359,7 @@
             <h4>Schedule a Strategy Call</h4>
             <p>Book a personalized 30-minute consultation</p>
           </div>
+          <svg class="contact-option-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
         <a href="mailto:jason@jasonmathew.net" class="contact-option">
           <div class="contact-option-icon">
@@ -1301,6 +1369,7 @@
             <h4>Send an Email</h4>
             <p>jason@jasonmathew.net</p>
           </div>
+          <svg class="contact-option-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
         <a href="#" class="contact-option">
           <div class="contact-option-icon">
@@ -1310,6 +1379,7 @@
             <h4>Join the Newsletter</h4>
             <p>Weekly insights on wealth building</p>
           </div>
+          <svg class="contact-option-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
       </div>
     </div>
@@ -1319,8 +1389,8 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <h3 class="serif">Jason Mathew</h3>
-        <p>Building wealth through mobile homes, land investing, and intelligent business strategies.</p>
+        <a href="#" class="logo">Jason<span>.</span>Mathew</a>
+        <p>Building wealth through mobile homes, land investing, and smart business strategies.</p>
       </div>
       <div>
         <h4 class="footer-heading">Navigation</h4>
@@ -1369,7 +1439,7 @@
     document.querySelectorAll('.about, .services, .tools, .process, .contact').forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(30px)';
-      el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+      el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
       observer.observe(el);
     });
   </script>
