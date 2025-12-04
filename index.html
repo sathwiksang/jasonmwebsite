@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jason Mathew | Real Estate Investment Expert</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg-primary: #FAFAF8;
+      --bg-secondary: #F5F4F0;
+      --bg-cream: #F0EDE5;
+      --primary: #1A1A1A;
+      --secondary: #2D2D2D;
+      --accent: #8B7355;
+      --accent-dark: #6B5A45;
+      --accent-light: #C4B59D;
+      --text: #1A1A1A;
+      --text-muted: #5A5A5A;
+      --text-subtle: #8A8A8A;
+      --border: rgba(0,0,0,0.08);
+      --border-dark: rgba(0,0,0,0.12);
+      --shadow: 0 4px 60px rgba(0,0,0,0.08);
+      --shadow-lg: 0 20px 80px rgba(0,0,0,0.12);
+    }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      font-weight: 400;
+    }
+    
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    
+    ::selection { background: var(--accent); color: white; }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 80px);
+    }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 28px 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    nav.scrolled {
+      background: rgba(250,250,248,0.95);
+      backdrop-filter: blur(20px);
+      padding: 18px 0;
+      box-shadow: 0 1px 0 var(--border);
+    }
+    
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    
+    .logo span { color: var(--accent); }
+    
+    .nav-links {
+      display: flex;
+      gap: 48px;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover { color: var(--text); }
+    
+    .nav-cta {
+      padding: 14px 32px;
+      background: var(--primary);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .nav-cta:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+    }
+    
+    .mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+    }
+    
+    .mobile-toggle span {
+      width: 22px;
+      height: 1.5px;
+      background: var(--text);
+      transition: all 0.3s;
+    }
+    
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-cream) 100%);
+      overflow: hidden;
+    }
+    
+    .hero-image {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80') center/cover;
+      opacity: 0.9;
+    }
+    
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--bg-primary) 0%, transparent 30%);
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 650px;
+      padding: 120px 0;
+    }
+    
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    
+    .hero-label::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+    }
+    
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+      color: var(--primary);
+    }
+    
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    
+    .hero-text {
+      font-size: 1.0625rem;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin-bottom: 48px;
+      line-height: 1.9;
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 40px;
+      background: var(--primary);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 40px;
+      background: transparent;
+      border: 1.5px solid var(--border-dark);
+      color: var(--text);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    
+    .hero-stats {
+      display: flex;
+      gap: 56px;
+      margin-top: 72px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .stat h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 4px;
+      line-height: 1;
+    }
+    
+    .stat p {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+    }
+    
+    /* Sections */
+    section {
+      padding: clamp(100px, 14vw, 180px) 0;
+      position: relative;
+    }
+    
+    .section-header {
+      margin-bottom: 80px;
+    }
+    
+    .section-header.center {
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+    }
+    
+    .section-subtitle {
+      font-size: 1.0625rem;
+      color: var(--text-muted);
+      margin-top: 20px;
+      line-height: 1.8;
+    }
+    
+    /* About */
+    .about {
+      background: white;
+    }
+    
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+    
+    .about-image-wrapper {
+      position: relative;
+    }
+    
+    .about-image {
+      aspect-ratio: 4/5;
+      background: url('jason.png') center/cover;
+      position: relative;
+    }
+    
+    .about-image-accent {
+      position: absolute;
+      width: 60%;
+      height: 40%;
+      background: var(--accent-light);
+      bottom: -30px;
+      right: -30px;
+      z-index: -1;
+    }
+    
+    .about-badge {
+      position: absolute;
+      bottom: 40px;
+      left: -40px;
+      background: white;
+      padding: 28px 32px;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .about-badge h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+    
+    .about-badge p {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 1rem;
+      line-height: 1.9;
+    }
+    
+    .about-text p:first-of-type {
+      font-size: 1.1875rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+    
+    .signature {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.25rem;
+      font-style: italic;
+      color: var(--accent);
+      margin-top: 40px;
+    }
+    
+    /* Services */
+    .services {
+      background: var(--bg-secondary);
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    
+    .service-card {
+      padding: 56px 44px;
+      background: white;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-12px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .service-card:hover::after { transform: scaleX(1); }
+    
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 32px;
+      color: var(--accent);
+      stroke-width: 1.5;
+    }
+    
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.625rem;
+      font-weight: 500;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+    
+    .service-card > p {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+    
+    .service-card ul { list-style: none; }
+    
+    .service-card li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 0;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .service-card li:last-child { border: none; }
+    .service-card li i { color: var(--accent); width: 18px; height: 18px; stroke-width: 2; }
+    
+    /* Tools */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+    
+    .tool-card {
+      padding: 44px 32px;
+      background: white;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    
+    .tool-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
+      transform: translateY(-6px);
+    }
+    
+    .tool-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 24px;
+      color: var(--accent);
+      stroke-width: 1.5;
+    }
+    
+    .tool-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+    
+    .tool-card p {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    
+    /* Process */
+    .process {
+      background: var(--bg-secondary);
+    }
+    
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 48px;
+      counter-reset: process;
+    }
+    
+    .process-step {
+      position: relative;
+      counter-increment: process;
+      text-align: center;
+    }
+    
+    .process-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    
+    .process-step h4 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+    }
+    
+    .process-step p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    
+    /* Contact / Consultation */
+    .contact {
+      background: white;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: var(--bg-cream);
+      overflow: hidden;
+    }
+    
+    .contact-image {
+      background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80') center/cover;
+      min-height: 500px;
+      position: relative;
+    }
+    
+    .contact-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.2);
+    }
+    
+    .contact-content {
+      padding: 80px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .contact-content .section-label { color: var(--accent); }
+    
+    .contact-content .section-title {
+      font-size: 2.75rem;
+      margin-bottom: 20px;
+    }
+    
+    .contact-content > p {
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      line-height: 1.8;
+    }
+    
+    .contact-options {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .contact-option {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 28px 32px;
+      background: white;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s;
+    }
+    
+    .contact-option:hover {
+      transform: translateX(8px);
+      box-shadow: var(--shadow);
+    }
+    
+    .contact-option-icon {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-secondary);
+      flex-shrink: 0;
+    }
+    
+    .contact-option-icon i {
+      width: 24px;
+      height: 24px;
+      color: var(--accent);
+      stroke-width: 1.5;
+    }
+    
+    .contact-option-text h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.375rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--primary);
+    }
+    
+    .contact-option-text p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+    
+    .contact-option-arrow {
+      margin-left: auto;
+      color: var(--accent);
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s;
+    }
+    
+    .contact-option:hover .contact-option-arrow {
+      transform: translateX(6px);
+    }
+    
+    /* Footer */
+    footer {
+      padding: 100px 0 48px;
+      background: var(--primary);
+      color: white;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 80px;
+    }
+    
+    .footer-brand .logo { color: white; }
+    
+    .footer-brand p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9375rem;
+      margin-top: 24px;
+      max-width: 300px;
+      line-height: 1.8;
+    }
+    
+    .footer-heading {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 28px;
+    }
+    
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 14px; }
+    
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover { color: var(--accent-light); }
+    
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 36px;
+    }
+    
+    .social-links a {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.6);
+      transition: all 0.3s;
+    }
+    
+    .social-links a:hover {
+      border-color: var(--accent-light);
+      color: var(--accent-light);
+      background: rgba(255,255,255,0.05);
+    }
+    
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.4);
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .nav-links, .nav-cta { display: none; }
+      .mobile-toggle { display: flex; }
+      .hero-image { width: 100%; opacity: 0.3; }
+      .hero-image::before { background: linear-gradient(90deg, var(--bg-primary) 0%, rgba(250,250,248,0.8) 100%); }
+      .about-grid { grid-template-columns: 1fr; gap: 64px; }
+      .about-badge { left: 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-image { min-height: 300px; }
+      .contact-content { padding: 56px 40px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 48px; }
+    }
+    
+    @media (max-width: 640px) {
+      .hero-stats { flex-direction: column; gap: 28px; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .contact-content { padding: 40px 24px; }
+      .contact-option { padding: 20px 24px; gap: 16px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <div class="container">
+      <a href="#" class="logo">Jason<span>.</span>Mathew</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Book a Call</a>
+      <div class="mobile-toggle">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-image"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-label">Real Estate Investment Expert</div>
+        <h1 class="serif">Building Wealth Through <em>Strategic</em> Investments</h1>
+        <p class="hero-text">Real estate investor, entrepreneur, and mentor helping discerning individuals create lasting freedom through mobile home investing, land deals, and intelligent wealth strategies.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">
+            <span>Schedule Consultation</span>
+            <i data-lucide="arrow-right"></i>
+          </a>
+          <a href="#expertise" class="btn-secondary">
+            <span>Explore Strategies</span>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <h3>100+</h3>
+            <p>Transactions Annually</p>
+          </div>
+          <div class="stat">
+            <h3>50+</h3>
+            <p>Notes Created</p>
+          </div>
+          <div class="stat">
+            <h3>15+</h3>
+            <p>Years Experience</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image-wrapper">
+          <div class="about-image"></div>
+          <div class="about-image-accent"></div>
+          <div class="about-badge">
+            <h4>15+</h4>
+            <p>Years Experience</p>
+          </div>
+        </div>
+        <div class="about-text">
+          <span class="section-label">About</span>
+          <h2 class="section-title serif">A Disciplined Approach to Wealth Creation</h2>
+          <p>I started my journey in real estate with mobile homes and quickly realized how powerful they are for generating cashflow and creating opportunities where others overlook them.</p>
+          <p>Since then, I've expanded into land investing, stocks, and building side businesses — all while learning which tools and strategies actually work in the real world.</p>
+          <p>From flipping single units in parks to structuring seller-financed deals, I've built a business around helping buyers and sellers find win-win solutions. My approach is practical: start small, scale smart, and keep learning.</p>
+          <div class="signature">Jason Mathew</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="expertise">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">Investment Strategies</span>
+        <h2 class="section-title serif">Proven Methods for Building Generational Wealth</h2>
+        <p class="section-subtitle">Discover the strategies I use to build lasting wealth through strategic real estate investments and diversified income streams.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <i data-lucide="home" class="service-icon"></i>
+          <h3>Mobile Home Investing</h3>
+          <p>Master the art of mobile home investments for consistent cash flow and appreciation potential.</p>
+          <ul>
+            <li><i data-lucide="check"></i>Advanced Due Diligence</li>
+            <li><i data-lucide="check"></i>Creative Financing Strategies</li>
+            <li><i data-lucide="check"></i>Seller Financing Structures</li>
+            <li><i data-lucide="check"></i>Park Owner Relations</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <i data-lucide="mountain" class="service-icon"></i>
+          <h3>Land Investing</h3>
+          <p>Unlock growth potential through strategic raw land acquisition. No tenants, no toilets — pure opportunity.</p>
+          <ul>
+            <li><i data-lucide="check"></i>Market Trend Analysis</li>
+            <li><i data-lucide="check"></i>Zoning Navigation</li>
+            <li><i data-lucide="check"></i>Multiple Exit Strategies</li>
+            <li><i data-lucide="check"></i>Passive Income Creation</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <i data-lucide="trending-up" class="service-icon"></i>
+          <h3>Investing & Wealth</h3>
+          <p>Build long-term wealth through strategic stock investing, options, and diversified income streams.</p>
+          <ul>
+            <li><i data-lucide="check"></i>Covered Calls & LEAPS</li>
+            <li><i data-lucide="check"></i>Dividend Growth Strategies</li>
+            <li><i data-lucide="check"></i>Portfolio Diversification</li>
+            <li><i data-lucide="check"></i>Side Business Development</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tools" id="tools">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">Resources</span>
+        <h2 class="section-title serif">Professional-Grade Investment Tools</h2>
+        <p class="section-subtitle">Access exclusive calculators and analytical tools to make data-driven investment decisions.</p>
+      </div>
+      <div class="tools-grid">
+        <a href="#" class="tool-card">
+          <i data-lucide="calculator" class="tool-icon"></i>
+          <h4>Cash Flow Calculator</h4>
+          <p>Advanced rental property analysis with comprehensive ROI metrics</p>
+        </a>
+        <a href="#" class="tool-card">
+          <i data-lucide="building" class="tool-icon"></i>
+          <h4>Mobile Home Analyzer</h4>
+          <p>Comprehensive investment opportunity evaluator</p>
+        </a>
+        <a href="#" class="tool-card">
+          <i data-lucide="map" class="tool-icon"></i>
+          <h4>Land Value Estimator</h4>
+          <p>Sophisticated valuation with development analysis</p>
+        </a>
+        <a href="#" class="tool-card">
+          <i data-lucide="bar-chart-3" class="tool-icon"></i>
+          <h4>Investment Tracker</h4>
+          <p>Real-time portfolio monitoring dashboard</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-label">Methodology</span>
+        <h2 class="section-title serif">The Weekly Investment Playbook</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="process-num">01</div>
+          <h4>Allocate</h4>
+          <p>Set aside capital across different asset classes with clear investment budgets.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">02</div>
+          <h4>Analyze</h4>
+          <p>Research markets, identify opportunities, and conduct thorough due diligence.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">03</div>
+          <h4>Execute</h4>
+          <p>Make offers, close deals, and implement strategies with precision.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">04</div>
+          <h4>Optimize</h4>
+          <p>Track performance, review results, and continuously refine your approach.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-image"></div>
+        <div class="contact-content">
+          <span class="section-label">Get Started</span>
+          <h2 class="section-title serif">Let's Build Your Wealth</h2>
+          <p>Ready to transform your financial future? Choose how you'd like to connect and let's discuss your investment goals.</p>
+          <div class="contact-options">
+            <a href="#" class="contact-option">
+              <div class="contact-option-icon">
+                <i data-lucide="calendar"></i>
+              </div>
+              <div class="contact-option-text">
+                <h4>Schedule a Strategy Call</h4>
+                <p>Book a personalized 30-minute consultation</p>
+              </div>
+              <i data-lucide="arrow-right" class="contact-option-arrow"></i>
+            </a>
+            <a href="mailto:jason@jasonmathew.net" class="contact-option">
+              <div class="contact-option-icon">
+                <i data-lucide="mail"></i>
+              </div>
+              <div class="contact-option-text">
+                <h4>Send an Email</h4>
+                <p>jason@jasonmathew.net</p>
+              </div>
+              <i data-lucide="arrow-right" class="contact-option-arrow"></i>
+            </a>
+            <a href="#" class="contact-option">
+              <div class="contact-option-icon">
+                <i data-lucide="message-circle"></i>
+              </div>
+              <div class="contact-option-text">
+                <h4>Join the Newsletter</h4>
+                <p>Weekly insights on wealth building</p>
+              </div>
+              <i data-lucide="arrow-right" class="contact-option-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">Jason<span>.</span>Mathew</a>
+          <p>Building wealth through mobile homes, land investing, and smart business strategies.</p>
+          <div class="social-links">
+            <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+            <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:jason@jasonmathew.net">jason@jasonmathew.net</a></li>
+            <li><a href="#">Book a Call</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Jason Mathew. All rights reserved.</p>
+        <p>Building Wealth Through Strategic Investments</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+    });
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('section:not(.hero)').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(40px)';
+      el.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
