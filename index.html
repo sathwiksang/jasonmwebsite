@@ -1746,7 +1746,7 @@
       </a>
       <div class="tool-card" onclick="openModal('noteCalculator')" style="cursor: pointer;">
         <div class="tool-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V13.5zm0 2.25h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V18zm2.498-6.75h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V13.5zm0 2.25h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V18zm2.504-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zm0 2.25h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V18zm2.498-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zM8.25 6h7.5v2.25h-7.5V6zM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 002.25 2.25h10.5a2.25 2.25 0 002.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0012 2.25z"/></svg>
         </div>
         <h4>Mobile Home Note Calculator</h4>
         <p>Structure owner-financing terms and payment schedules</p>
@@ -2184,6 +2184,7 @@
               color: var(--text-muted);
             }
             #mh-note-calculator input[type="number"],
+            #mh-note-calculator input[type="text"],
             #mh-note-calculator input[type="date"] {
               width: 100%;
               box-sizing: border-box;
@@ -2198,6 +2199,7 @@
               background: white;
             }
             #mh-note-calculator input[type="number"]:focus,
+            #mh-note-calculator input[type="text"]:focus,
             #mh-note-calculator input[type="date"]:focus {
               border-color: var(--gold);
               box-shadow: 0 0 0 3px rgba(184,149,110,0.15);
@@ -2250,12 +2252,23 @@
               color: #f9fafb;
               display: none;
             }
-            #mh-note-calculator .summary strong {
+            #mh-note-calculator .summary-title {
+              display: flex;
+              justify-content: space-between;
+              align-items: baseline;
+              gap: 8px;
+              flex-wrap: wrap;
+              margin-bottom: 16px;
+            }
+            #mh-note-calculator .summary-title strong {
               font-family: 'Playfair Display', serif;
               font-size: 1.125rem;
               color: white;
-              display: block;
-              margin-bottom: 16px;
+            }
+            #mh-note-calculator .summary-title span.loan-name {
+              font-weight: 600;
+              font-size: 1rem;
+              color: var(--gold-light);
             }
             #mh-note-calculator .summary-grid {
               display: grid;
@@ -2353,8 +2366,20 @@
           <h2>Loan Inputs</h2>
           <div class="grid">
             <div>
-              <label for="mh-loan-amount">Loan Amount (after down payment)</label>
-              <input type="number" id="mh-loan-amount" min="0" step="0.01" placeholder="Example: 40000">
+              <label for="mh-loan-name">Loan Name / Nickname</label>
+              <input type="text" id="mh-loan-name" placeholder="Example: Oak Park Mobile #12">
+            </div>
+            <div>
+              <label for="mh-purchase-price">Purchase Price</label>
+              <input type="number" id="mh-purchase-price" min="0" step="0.01" placeholder="Example: 50000">
+            </div>
+            <div>
+              <label for="mh-down-payment">Down Payment</label>
+              <input type="number" id="mh-down-payment" min="0" step="0.01" placeholder="Example: 10000">
+            </div>
+            <div>
+              <label for="mh-loan-amount">Loan Amount (auto-calculated)</label>
+              <input type="number" id="mh-loan-amount" min="0" step="0.01" placeholder="Auto-calculated" readonly style="background: var(--bg-cream);">
             </div>
             <div>
               <label for="mh-rate">Interest Rate (annual, %)</label>
@@ -2377,7 +2402,10 @@
           </div>
           <div class="error" id="mh-error"></div>
           <div class="summary" id="mh-summary">
-            <div><strong>Loan Summary</strong></div>
+            <div class="summary-title">
+              <strong>Loan Summary</strong>
+              <span class="loan-name" id="mh-sum-loan-name"></span>
+            </div>
             <div class="summary-grid">
               <div class="summary-item">
                 <span class="label">Monthly Payment</span>
@@ -2708,6 +2736,9 @@
 
     // Mobile Home Note Calculator
     (function () {
+      const loanNameEl = document.getElementById('mh-loan-name');
+      const purchasePriceEl = document.getElementById('mh-purchase-price');
+      const downPaymentEl = document.getElementById('mh-down-payment');
       const loanEl = document.getElementById('mh-loan-amount');
       const rateEl = document.getElementById('mh-rate');
       const termEl = document.getElementById('mh-term-months');
@@ -2720,6 +2751,7 @@
       const sumNperEl = document.getElementById('mh-sum-nper');
       const sumTotalEl = document.getElementById('mh-sum-total');
       const sumInterestEl = document.getElementById('mh-sum-interest');
+      const sumLoanNameEl = document.getElementById('mh-sum-loan-name');
       const calcBtn = document.getElementById('mh-calc-btn');
       const clearBtn = document.getElementById('mh-clear-btn');
       const printBtn = document.getElementById('mh-print-btn');
@@ -2728,6 +2760,18 @@
       if (!loanEl || !calcBtn) return; // Exit if elements don't exist
 
       let lastSchedule = []; // store schedule for CSV
+      let lastLoanName = ''; // store loan name for CSV
+
+      // Auto-calculate loan amount from purchase price - down payment
+      function updateLoanAmount() {
+        const purchasePrice = parseFloat(purchasePriceEl.value) || 0;
+        const downPayment = parseFloat(downPaymentEl.value) || 0;
+        const loanAmount = Math.max(0, purchasePrice - downPayment);
+        loanEl.value = loanAmount.toFixed(2);
+      }
+
+      purchasePriceEl.addEventListener('input', updateLoanAmount);
+      downPaymentEl.addEventListener('input', updateLoanAmount);
 
       function formatCurrency(num) {
         return '$' + Number(num).toLocaleString(undefined, {
@@ -2762,15 +2806,21 @@
         tbodyEl.innerHTML = '';
         lastSchedule = [];
 
+        // Update loan amount first
+        updateLoanAmount();
+        
         const principal = parseFloat(loanEl.value);
         const rateAnnual = parseFloat(rateEl.value);
         const nper = parseInt(termEl.value, 10);
+        const loanName = loanNameEl.value.trim() || 'Unnamed Loan';
 
         if (!principal || principal <= 0 || (rateAnnual === undefined || rateAnnual < 0) || !nper || nper <= 0) {
-          errorEl.textContent = 'Please enter a valid loan amount, interest rate, and term in months.';
+          errorEl.textContent = 'Please enter a valid purchase price, down payment, interest rate, and term in months.';
           errorEl.style.display = 'block';
           return;
         }
+
+        lastLoanName = loanName;
 
         const r = rateAnnual / 100 / 12; // monthly rate
         let payment;
@@ -2845,10 +2895,14 @@
         sumNperEl.textContent = nper.toString();
         sumTotalEl.textContent = formatCurrency(totalPaid);
         sumInterestEl.textContent = formatCurrency(totalInterest);
+        sumLoanNameEl.textContent = loanName;
         summaryEl.style.display = 'block';
       }
 
       function clearAll() {
+        loanNameEl.value = '';
+        purchasePriceEl.value = '';
+        downPaymentEl.value = '';
         loanEl.value = '';
         rateEl.value = '';
         termEl.value = '';
@@ -2858,6 +2912,7 @@
         tableWrapperEl.style.display = 'none';
         tbodyEl.innerHTML = '';
         lastSchedule = [];
+        lastLoanName = '';
       }
 
       function downloadCSV() {
@@ -2866,8 +2921,12 @@
           return;
         }
 
-        const header = ['Payment #', 'Due Date', 'Payment', 'Principal', 'Interest', 'Ending Balance'];
+        const loanName = lastLoanName || 'Unnamed Loan';
+        const fileName = loanName.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '_amortization.csv';
+        
+        const header = ['Loan Name', 'Payment #', 'Due Date', 'Payment', 'Principal', 'Interest', 'Ending Balance'];
         const rows = lastSchedule.map(row => [
+          loanName,
           row.paymentNumber,
           row.dueDate || '',
           row.payment.toFixed(2),
@@ -2882,7 +2941,7 @@
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'mobile_home_note_amortization.csv';
+        a.download = fileName;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
