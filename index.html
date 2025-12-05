@@ -1550,7 +1550,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#expertise">Expertise</a></li>
       <li><a href="#tools">Tools</a></li>
-      <li><a href="#process">Process</a></li>
+      <li><a href="#process">Resources</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Book a Call</a>
@@ -1744,13 +1744,13 @@
         <h4>Land Value Estimator</h4>
         <p>Sophisticated valuation with development analysis</p>
       </a>
-      <a href="#" class="tool-card">
+      <div class="tool-card" onclick="openModal('noteCalculator')" style="cursor: pointer;">
         <div class="tool-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         </div>
-        <h4>Investment Tracker</h4>
-        <p>Real-time portfolio monitoring dashboard</p>
-      </a>
+        <h4>Mobile Home Note Calculator</h4>
+        <p>Structure owner-financing terms and payment schedules</p>
+      </div>
     </div>
   </section>
 
@@ -2125,6 +2125,300 @@
     </div>
   </div>
 
+  <!-- Mobile Home Note Calculator Modal -->
+  <div class="modal-overlay" id="noteCalculatorModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-header-content">
+          <h2>Mobile Home Note Calculator</h2>
+          <p>Structure owner-financing terms, payment amount, and full amortization schedule</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('noteCalculator')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="mh-note-calculator">
+          <style>
+            #mh-note-calculator {
+              font-family: 'DM Sans', sans-serif;
+              max-width: 100%;
+              margin: 0;
+              padding: 0;
+              background: transparent;
+              border-radius: 0;
+              box-shadow: none;
+              color: var(--text);
+            }
+            #mh-note-calculator h1 {
+              display: none;
+            }
+            #mh-note-calculator h2 {
+              margin-top: 24px;
+              margin-bottom: 16px;
+              font-family: 'Playfair Display', serif;
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: var(--navy);
+              border-bottom: 1px solid var(--border);
+              padding-bottom: 8px;
+            }
+            #mh-note-calculator h2:first-of-type {
+              margin-top: 0;
+            }
+            #mh-note-calculator p.subtext {
+              display: none;
+            }
+            #mh-note-calculator .grid {
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 16px;
+            }
+            #mh-note-calculator label {
+              font-size: 0.6875rem;
+              font-weight: 600;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              display: block;
+              margin-bottom: 8px;
+              color: var(--text-muted);
+            }
+            #mh-note-calculator input[type="number"],
+            #mh-note-calculator input[type="date"] {
+              width: 100%;
+              box-sizing: border-box;
+              padding: 14px 16px;
+              border-radius: 6px;
+              border: 1px solid var(--border);
+              font-family: 'DM Sans', sans-serif;
+              font-size: 0.9375rem;
+              color: var(--text);
+              outline: none;
+              transition: all 0.3s;
+              background: white;
+            }
+            #mh-note-calculator input[type="number"]:focus,
+            #mh-note-calculator input[type="date"]:focus {
+              border-color: var(--gold);
+              box-shadow: 0 0 0 3px rgba(184,149,110,0.15);
+            }
+            #mh-note-calculator .actions {
+              margin-top: 24px;
+              display: flex;
+              flex-wrap: wrap;
+              gap: 12px;
+              justify-content: flex-start;
+            }
+            #mh-note-calculator button {
+              border: none;
+              border-radius: 6px;
+              padding: 12px 24px;
+              font-family: 'DM Sans', sans-serif;
+              font-size: 0.8125rem;
+              font-weight: 500;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              cursor: pointer;
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              transition: all 0.3s;
+            }
+            #mh-note-calculator button.primary {
+              background: var(--navy);
+              color: #fff;
+            }
+            #mh-note-calculator button.primary:hover {
+              background: var(--gold-dark);
+              transform: translateY(-2px);
+              box-shadow: var(--shadow-md);
+            }
+            #mh-note-calculator button.secondary {
+              background: white;
+              color: var(--navy);
+              border: 1px solid var(--border);
+            }
+            #mh-note-calculator button.secondary:hover {
+              background: var(--bg-cream);
+              border-color: var(--gold);
+            }
+            #mh-note-calculator .summary {
+              margin-top: 28px;
+              padding: 24px;
+              border-radius: 8px;
+              background: var(--navy);
+              color: #f9fafb;
+              display: none;
+            }
+            #mh-note-calculator .summary strong {
+              font-family: 'Playfair Display', serif;
+              font-size: 1.125rem;
+              color: white;
+              display: block;
+              margin-bottom: 16px;
+            }
+            #mh-note-calculator .summary-grid {
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 16px;
+            }
+            #mh-note-calculator .summary-item span.label {
+              display: block;
+              font-size: 0.6875rem;
+              font-weight: 600;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              color: rgba(255,255,255,0.5);
+              margin-bottom: 6px;
+            }
+            #mh-note-calculator .summary-item span.value {
+              font-family: 'Playfair Display', serif;
+              font-size: 1.25rem;
+              font-weight: 500;
+              color: white;
+            }
+            #mh-note-calculator table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 18px;
+              font-size: 0.8125rem;
+              background: white;
+            }
+            #mh-note-calculator thead {
+              background: var(--navy);
+            }
+            #mh-note-calculator th {
+              padding: 12px 10px;
+              text-align: right;
+              font-size: 0.6875rem;
+              font-weight: 600;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              color: white;
+              border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            #mh-note-calculator th:first-child {
+              text-align: left;
+            }
+            #mh-note-calculator td {
+              padding: 10px;
+              border-bottom: 1px solid var(--border);
+              text-align: right;
+              white-space: nowrap;
+              color: var(--text);
+            }
+            #mh-note-calculator td:first-child {
+              text-align: left;
+            }
+            #mh-note-calculator tbody tr:nth-child(even) {
+              background: var(--bg-cream);
+            }
+            #mh-note-calculator .table-wrapper {
+              max-height: 400px;
+              overflow: auto;
+              margin-top: 8px;
+              border-radius: 8px;
+              border: 1px solid var(--border);
+              background: white;
+              display: none;
+            }
+            #mh-note-calculator .error {
+              margin-top: 12px;
+              padding: 12px 16px;
+              border-radius: 6px;
+              font-size: 0.875rem;
+              color: #b91c1c;
+              background: #fee2e2;
+              border: 1px solid #fecaca;
+              display: none;
+            }
+            @media (max-width: 1024px) {
+              #mh-note-calculator .grid {
+                grid-template-columns: repeat(2, 1fr);
+              }
+              #mh-note-calculator .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+              }
+            }
+            @media (max-width: 640px) {
+              #mh-note-calculator .grid {
+                grid-template-columns: 1fr;
+              }
+              #mh-note-calculator .summary-grid {
+                grid-template-columns: 1fr;
+              }
+            }
+          </style>
+
+          <h2>Loan Inputs</h2>
+          <div class="grid">
+            <div>
+              <label for="mh-loan-amount">Loan Amount (after down payment)</label>
+              <input type="number" id="mh-loan-amount" min="0" step="0.01" placeholder="Example: 40000">
+            </div>
+            <div>
+              <label for="mh-rate">Interest Rate (annual, %)</label>
+              <input type="number" id="mh-rate" min="0" step="0.01" placeholder="Example: 9.5">
+            </div>
+            <div>
+              <label for="mh-term-months">Term in Months</label>
+              <input type="number" id="mh-term-months" min="1" step="1" placeholder="Example: 120">
+            </div>
+            <div>
+              <label for="mh-start-date">First Payment Date (optional)</label>
+              <input type="date" id="mh-start-date">
+            </div>
+          </div>
+          <div class="actions">
+            <button type="button" class="primary" id="mh-calc-btn">Calculate &amp; Build Schedule</button>
+            <button type="button" class="secondary" id="mh-clear-btn">Clear</button>
+            <button type="button" class="secondary" id="mh-print-btn">Print</button>
+            <button type="button" class="secondary" id="mh-download-btn">Download CSV</button>
+          </div>
+          <div class="error" id="mh-error"></div>
+          <div class="summary" id="mh-summary">
+            <div><strong>Loan Summary</strong></div>
+            <div class="summary-grid">
+              <div class="summary-item">
+                <span class="label">Monthly Payment</span>
+                <span class="value" id="mh-sum-payment">$0.00</span>
+              </div>
+              <div class="summary-item">
+                <span class="label">Number of Payments</span>
+                <span class="value" id="mh-sum-nper">0</span>
+              </div>
+              <div class="summary-item">
+                <span class="label">Total of Payments</span>
+                <span class="value" id="mh-sum-total">$0.00</span>
+              </div>
+              <div class="summary-item">
+                <span class="label">Total Interest</span>
+                <span class="value" id="mh-sum-interest">$0.00</span>
+              </div>
+            </div>
+          </div>
+          <h2>Amortization Schedule</h2>
+          <div class="table-wrapper" id="mh-table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Due Date</th>
+                  <th>Payment</th>
+                  <th>Principal</th>
+                  <th>Interest</th>
+                  <th>Ending Balance</th>
+                </tr>
+              </thead>
+              <tbody id="mh-tbody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -2411,6 +2705,195 @@
       resultsDiv.classList.add('visible');
       resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+
+    // Mobile Home Note Calculator
+    (function () {
+      const loanEl = document.getElementById('mh-loan-amount');
+      const rateEl = document.getElementById('mh-rate');
+      const termEl = document.getElementById('mh-term-months');
+      const startDateEl = document.getElementById('mh-start-date');
+      const errorEl = document.getElementById('mh-error');
+      const summaryEl = document.getElementById('mh-summary');
+      const tbodyEl = document.getElementById('mh-tbody');
+      const tableWrapperEl = document.getElementById('mh-table-wrapper');
+      const sumPaymentEl = document.getElementById('mh-sum-payment');
+      const sumNperEl = document.getElementById('mh-sum-nper');
+      const sumTotalEl = document.getElementById('mh-sum-total');
+      const sumInterestEl = document.getElementById('mh-sum-interest');
+      const calcBtn = document.getElementById('mh-calc-btn');
+      const clearBtn = document.getElementById('mh-clear-btn');
+      const printBtn = document.getElementById('mh-print-btn');
+      const downloadBtn = document.getElementById('mh-download-btn');
+
+      if (!loanEl || !calcBtn) return; // Exit if elements don't exist
+
+      let lastSchedule = []; // store schedule for CSV
+
+      function formatCurrency(num) {
+        return '$' + Number(num).toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+      }
+
+      function formatDate(date) {
+        if (!date) return '';
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return month + '/' + day + '/' + year;
+      }
+
+      function addMonths(date, months) {
+        const d = new Date(date.getTime());
+        const day = d.getDate();
+        d.setMonth(d.getMonth() + months);
+        // handle month rollover (e.g., Jan 31 -> Feb 28/29)
+        if (d.getDate() < day) {
+          d.setDate(0);
+        }
+        return d;
+      }
+
+      function calculateSchedule() {
+        errorEl.style.display = 'none';
+        summaryEl.style.display = 'none';
+        tableWrapperEl.style.display = 'none';
+        tbodyEl.innerHTML = '';
+        lastSchedule = [];
+
+        const principal = parseFloat(loanEl.value);
+        const rateAnnual = parseFloat(rateEl.value);
+        const nper = parseInt(termEl.value, 10);
+
+        if (!principal || principal <= 0 || (rateAnnual === undefined || rateAnnual < 0) || !nper || nper <= 0) {
+          errorEl.textContent = 'Please enter a valid loan amount, interest rate, and term in months.';
+          errorEl.style.display = 'block';
+          return;
+        }
+
+        const r = rateAnnual / 100 / 12; // monthly rate
+        let payment;
+        if (r === 0) {
+          payment = principal / nper;
+        } else {
+          const factor = Math.pow(1 + r, -nper);
+          payment = principal * r / (1 - factor);
+        }
+        payment = Number(payment.toFixed(2));
+
+        let balance = principal;
+        let totalInterest = 0;
+        let totalPaid = 0;
+        let startDate = null;
+        if (startDateEl.value) {
+          startDate = new Date(startDateEl.value + 'T00:00:00');
+        }
+
+        for (let i = 1; i <= nper; i++) {
+          let interest = r === 0 ? 0 : balance * r;
+          let principalPaid = payment - interest;
+
+          // Protect against rounding issues on final payment
+          if (i === nper) {
+            principalPaid = balance;
+            payment = principalPaid + interest;
+          }
+
+          interest = Number(interest.toFixed(2));
+          principalPaid = Number(principalPaid.toFixed(2));
+          balance = Number((balance - principalPaid).toFixed(2));
+          if (balance < 0) balance = 0;
+
+          totalInterest += interest;
+          totalPaid += payment;
+
+          let dueDate = '';
+          if (startDate) {
+            const d = addMonths(startDate, i - 1);
+            dueDate = formatDate(d);
+          }
+
+          const row = {
+            paymentNumber: i,
+            dueDate,
+            payment: payment,
+            principal: principalPaid,
+            interest: interest,
+            balance: balance
+          };
+          lastSchedule.push(row);
+        }
+
+        // Build table HTML
+        const rowsHtml = lastSchedule.map(row => `
+          <tr>
+            <td>${row.paymentNumber}</td>
+            <td>${row.dueDate || '-'}</td>
+            <td>${formatCurrency(row.payment)}</td>
+            <td>${formatCurrency(row.principal)}</td>
+            <td>${formatCurrency(row.interest)}</td>
+            <td>${formatCurrency(row.balance)}</td>
+          </tr>
+        `).join('');
+
+        tbodyEl.innerHTML = rowsHtml;
+        tableWrapperEl.style.display = 'block';
+
+        // Summary
+        sumPaymentEl.textContent = formatCurrency(lastSchedule[0].payment);
+        sumNperEl.textContent = nper.toString();
+        sumTotalEl.textContent = formatCurrency(totalPaid);
+        sumInterestEl.textContent = formatCurrency(totalInterest);
+        summaryEl.style.display = 'block';
+      }
+
+      function clearAll() {
+        loanEl.value = '';
+        rateEl.value = '';
+        termEl.value = '';
+        startDateEl.value = '';
+        errorEl.style.display = 'none';
+        summaryEl.style.display = 'none';
+        tableWrapperEl.style.display = 'none';
+        tbodyEl.innerHTML = '';
+        lastSchedule = [];
+      }
+
+      function downloadCSV() {
+        if (!lastSchedule.length) {
+          alert('Please calculate a schedule first.');
+          return;
+        }
+
+        const header = ['Payment #', 'Due Date', 'Payment', 'Principal', 'Interest', 'Ending Balance'];
+        const rows = lastSchedule.map(row => [
+          row.paymentNumber,
+          row.dueDate || '',
+          row.payment.toFixed(2),
+          row.principal.toFixed(2),
+          row.interest.toFixed(2),
+          row.balance.toFixed(2)
+        ]);
+
+        const csvLines = [header.join(','), ...rows.map(r => r.join(','))];
+        const csvContent = csvLines.join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'mobile_home_note_amortization.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      calcBtn.addEventListener('click', calculateSchedule);
+      clearBtn.addEventListener('click', clearAll);
+      printBtn.addEventListener('click', () => window.print());
+      downloadBtn.addEventListener('click', downloadCSV);
+    })();
   </script>
 </body>
 </html>
