@@ -39,6 +39,455 @@
     
     .serif { font-family: 'Playfair Display', serif; }
     ::selection { background: var(--gold); color: white; }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 26, 36, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+      overflow-y: auto;
+      padding: 40px 20px;
+    }
+    
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--bg-ivory);
+      border-radius: 4px;
+      transform: translateY(30px);
+      transition: transform 0.4s ease;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+    }
+    
+    .modal-overlay.active .modal-container {
+      transform: translateY(0);
+    }
+    
+    .modal-header {
+      background: var(--navy);
+      padding: 32px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    
+    .modal-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 40px;
+      right: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    
+    .modal-header-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: white;
+      margin-bottom: 4px;
+    }
+    
+    .modal-header-content p {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.6);
+    }
+    
+    .modal-close {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .modal-close:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    
+    .modal-close svg { width: 20px; height: 20px; }
+    
+    .modal-body {
+      padding: 40px;
+      background: linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-ivory) 100%);
+    }
+
+    /* Calculator Styles */
+    .calc-section {
+      margin-bottom: 32px;
+    }
+    
+    .calc-section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .calc-section-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 50%, var(--navy-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(27, 43, 58, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    
+    .calc-section-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--gold);
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+    }
+    
+    .calc-section-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    
+    .calc-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .calc-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    
+    .calc-field {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .calc-field.span-2 { grid-column: span 2; }
+    
+    .calc-field label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    
+    .calc-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    
+    .calc-input-prefix {
+      position: absolute;
+      left: 14px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gold-dark);
+      pointer-events: none;
+    }
+    
+    .calc-input-suffix {
+      position: absolute;
+      right: 14px;
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+      pointer-events: none;
+    }
+    
+    .calc-input {
+      width: 100%;
+      padding: 14px 16px;
+      padding-left: 28px;
+      background: white;
+      border: 1px solid var(--border);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9375rem;
+      color: var(--text);
+      transition: all 0.3s;
+    }
+    
+    .calc-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(184,149,110,0.15);
+    }
+    
+    .calc-input.no-prefix { padding-left: 16px; }
+    .calc-input.has-suffix { padding-right: 50px; }
+    
+    .calc-input-full {
+      width: 100%;
+      padding: 16px 20px;
+      background: white;
+      border: 2px solid var(--border);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--text);
+      transition: all 0.3s;
+    }
+    
+    .calc-input-full:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    /* Exit Strategy Buttons */
+    .exit-buttons {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    
+    .exit-btn {
+      flex: 1;
+      padding: 16px 20px;
+      background: white;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .exit-btn svg {
+      width: 20px;
+      height: 20px;
+      color: var(--text-muted);
+      transition: color 0.3s;
+    }
+    
+    .exit-btn span {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.3s;
+    }
+    
+    .exit-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    
+    .exit-btn.active svg { color: var(--gold); }
+    .exit-btn.active span { color: white; }
+    
+    .exit-btn:hover:not(.active) {
+      border-color: var(--gold);
+    }
+
+    /* Analyze Button */
+    .calc-analyze-btn {
+      width: 100%;
+      padding: 18px 36px;
+      background: var(--navy);
+      color: white;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    
+    .calc-analyze-btn:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .calc-analyze-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Results Section */
+    .calc-results {
+      margin-top: 40px;
+      display: none;
+    }
+    
+    .calc-results.visible { display: block; }
+    
+    .results-summary {
+      background: var(--navy);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .results-summary-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .results-summary-header svg {
+      width: 24px;
+      height: 24px;
+      color: var(--gold);
+    }
+    
+    .results-summary-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: white;
+    }
+    
+    .results-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    
+    .summary-metric {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-left: 2px solid transparent;
+    }
+    
+    .summary-metric.highlight {
+      background: rgba(184,149,110,0.15);
+      border-left-color: var(--gold);
+    }
+    
+    .summary-metric-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 6px;
+    }
+    
+    .summary-metric.highlight .summary-metric-label {
+      color: var(--gold-light);
+    }
+    
+    .summary-metric-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: white;
+    }
+
+    /* Results Cards */
+    .results-card {
+      background: white;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+    }
+    
+    .results-card-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .results-card-header.rental { background: linear-gradient(90deg, var(--navy), var(--navy-light)); }
+    .results-card-header.flip { background: linear-gradient(90deg, var(--gold-dark), var(--gold)); }
+    .results-card-header.wholesale { background: linear-gradient(90deg, var(--forest), var(--navy-light)); }
+    
+    .results-card-header svg {
+      width: 22px;
+      height: 22px;
+      color: white;
+    }
+    
+    .results-card-header h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: white;
+    }
+    
+    .results-card-body {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    
+    .result-metric {
+      padding: 16px;
+      background: var(--bg-cream);
+      border-left: 2px solid transparent;
+    }
+    
+    .result-metric.highlight {
+      background: linear-gradient(135deg, rgba(184,149,110,0.1), rgba(184,149,110,0.05));
+      border-left-color: var(--gold);
+    }
+    
+    .result-metric-icon {
+      width: 32px;
+      height: 32px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    
+    .result-metric-icon svg {
+      width: 16px;
+      height: 16px;
+      color: var(--gold-dark);
+    }
+    
+    .result-metric-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-subtle);
+      margin-bottom: 4px;
+    }
+    
+    .result-metric-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+    
+    .result-metric.span-2 { grid-column: span 2; }
     
     /* Top Bar */
     .top-bar {
@@ -701,17 +1150,22 @@
     .tool-icon {
       width: 64px;
       height: 64px;
-      background: var(--bg-cream);
+      background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 50%, var(--navy-dark) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 24px;
       transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(27, 43, 58, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
     
-    .tool-card:hover .tool-icon { background: var(--navy); }
-    .tool-icon svg { width: 26px; height: 26px; color: var(--gold-dark); transition: color 0.3s; }
-    .tool-card:hover .tool-icon svg { color: var(--gold-light); }
+    .tool-card:hover .tool-icon { 
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 50%, var(--navy-dark) 100%);
+      box-shadow: 0 6px 20px rgba(27, 43, 58, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+    .tool-icon svg { width: 26px; height: 26px; color: var(--gold-light); transition: color 0.3s; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2)); }
+    .tool-card:hover .tool-icon svg { color: var(--gold); }
     
     .tool-card h4 {
       font-family: 'Playfair Display', serif;
@@ -1051,6 +1505,10 @@
       .contact-info, .contact-options { padding: 48px 24px; }
       footer { padding: 60px 24px 32px; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .modal-body { padding: 24px; }
+      .calc-grid { grid-template-columns: repeat(2, 1fr); }
+      .results-summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .results-card-body { grid-template-columns: repeat(2, 1fr); }
     }
     
     @media (max-width: 640px) {
@@ -1062,6 +1520,12 @@
       .process-steps { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .calc-grid { grid-template-columns: 1fr; }
+      .calc-field.span-2 { grid-column: span 1; }
+      .exit-buttons { flex-direction: column; }
+      .results-summary-grid { grid-template-columns: 1fr; }
+      .results-card-body { grid-template-columns: 1fr; }
+      .result-metric.span-2 { grid-column: span 1; }
     }
   </style>
 </head>
@@ -1093,7 +1557,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#expertise">Expertise</a></li>
       <li><a href="#tools">Tools</a></li>
-      <li><a href="#process">Process</a></li>
+      <li><a href="#process">Resources</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Book a Call</a>
@@ -1107,15 +1571,8 @@
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
         <span>Real Estate Investment Expert</span>
       </div>
-      <h1 class="serif">Building Wealth Through <em>Strategic</em> Investments</h1>
-      <p class="hero-text">Real estate investor, entrepreneur, and mentor helping discerning individuals create lasting freedom through mobile home investing, land deals, and intelligent wealth strategies.</p>
-      <div class="hero-buttons">
-        <a href="#contact" class="btn-dark">
-          <span>Schedule Consultation</span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-        <a href="#expertise" class="btn-outline">Explore Strategies</a>
-      </div>
+      <h1 class="serif">Building Wealth Through <em>Smart, Real-World</em> Investments</h1>
+      <p class="hero-text">Mobile homes, land deals, rentals, side hustles, automation systems, and practical finance strategies that anyone can use to create real income — even without being a millionaire.</p>
       <div class="hero-stats">
         <div class="hero-stat">
           <h3>100<span>+</span></h3>
@@ -1170,9 +1627,9 @@
       </div>
       <div class="about-content">
         <span class="section-tag">About</span>
-        <h2 class="serif">A Disciplined Approach to Wealth Creation</h2>
-        <p>I started my journey in real estate with mobile homes and quickly realized how powerful they are for generating cashflow and creating opportunities where others overlook them.</p>
-        <p>Since then, I've expanded into land investing, stocks, and building side businesses — all while learning which tools and strategies actually work in the real world.</p>
+        <h2 class="serif">A Practical Approach to Building Income</h2>
+        <p>I didn't come from money. My journey started with modest mobile home deals that taught me how to create income one step at a time.</p>
+        <p>As I learned, I expanded into land investing, rentals, flips, seller-financed deals, and building automated systems that make business easier. Everything I teach today comes from years of trial, error, and real results — not hype.</p>
         <div class="about-highlights">
           <div class="about-highlight">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -1180,18 +1637,18 @@
           </div>
           <div class="about-highlight">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span>100+ Transactions Annually</span>
+            <span>Mobile Home & Land Investing Specialist</span>
           </div>
           <div class="about-highlight">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span>Mobile Home & Land Specialist</span>
+            <span>100+ Transactions Completed</span>
           </div>
           <div class="about-highlight">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span>Strategic Wealth Building Mentor</span>
+            <span>Helping Investors Build Real Income Streams</span>
           </div>
         </div>
-        <p>From flipping single units in parks to structuring seller-financed deals, I've built a business around helping buyers and sellers find win-win solutions.</p>
+        <p>Every deal taught me something new — and now I share those lessons so others can build income without the guesswork.</p>
         <div class="about-signature">
           <div class="signature-text">
             <h4 class="serif">Jason Mathew</h4>
@@ -1211,46 +1668,50 @@
     <div class="services-grid">
       <div class="service-card">
         <div class="service-img">
-          <img src="https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=600&q=80" alt="Mobile Home">
+          <img src="https://images.unsplash.com/photo-1652946336807-bd35785ef268?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Real Estate | Mobile Home Investing">
         </div>
         <div class="service-body">
-          <h3>Mobile Home Investing</h3>
-          <p>Master the art of mobile home investments for consistent cash flow and appreciation potential.</p>
+          <h3>Real Estate | Mobile Home Investing</h3>
+          <p>Comprehensive real estate investment strategies focused on mobile homes, land, and rental properties for consistent cash flow.</p>
           <ul class="service-list">
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Advanced Due Diligence</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Creative Financing Strategies</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Seller Financing Structures</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Park Owner Relations</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Mobile home deals</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Fix & flips</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Rentals</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Land investing</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Notes</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Park relationships</li>
           </ul>
         </div>
       </div>
       <div class="service-card">
         <div class="service-img">
-          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80" alt="Land">
+          <img src="assets/finance.png" alt="Financial Growth & Side Income">
         </div>
         <div class="service-body">
-          <h3>Land Investing</h3>
-          <p>Unlock growth potential through strategic raw land acquisition. No tenants, no toilets — pure opportunity.</p>
+          <h3>Financial Growth & Side Income</h3>
+          <p>Diversify your income streams with side hustles, stock investing, and practical finance strategies that build real wealth.</p>
           <ul class="service-list">
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Market Trend Analysis</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Zoning Navigation</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Multiple Exit Strategies</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Passive Income Creation</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Side hustles</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Cashflow opportunities</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Stock investing (covered calls, dividend strategies)</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Smart saving habits</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Passive income ideas</li>
           </ul>
         </div>
       </div>
       <div class="service-card">
         <div class="service-img">
-          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80" alt="Wealth">
+          <img src="assets/automation.jpg" alt="Automation & Business Systems">
         </div>
         <div class="service-body">
-          <h3>Investing & Wealth</h3>
-          <p>Build long-term wealth through strategic stock investing, options, and diversified income streams.</p>
+          <h3>Automation & Business Systems</h3>
+          <p>Streamline your business operations with automation tools, AI assistants, and optimized workflows that save time and increase efficiency.</p>
           <ul class="service-list">
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Covered Calls & LEAPS</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Dividend Growth Strategies</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Portfolio Diversification</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Side Business Development</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>GHL setup</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Automation for communication</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>AI assistants</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Website funnels</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Workflow optimization</li>
           </ul>
         </div>
       </div>
@@ -1262,7 +1723,7 @@
     <div class="tools-header">
       <div class="tools-header-left">
         <p class="section-tag">Resources</p>
-        <h2 class="serif">Professional-Grade Investment Tools</h2>
+        <h2 class="serif">Free tools & Resources to Grow your Income</h2>
       </div>
     </div>
     <div class="tools-grid">
@@ -1273,13 +1734,13 @@
         <h4>Cash Flow Calculator</h4>
         <p>Advanced rental property analysis with comprehensive ROI metrics</p>
       </a>
-      <a href="#" class="tool-card">
+      <div class="tool-card" onclick="openModal('mobilehome')" style="cursor: pointer;">
         <div class="tool-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
         </div>
         <h4>Mobile Home Analyzer</h4>
         <p>Comprehensive investment opportunity evaluator</p>
-      </a>
+      </div>
       <a href="#" class="tool-card">
         <div class="tool-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
@@ -1287,13 +1748,13 @@
         <h4>Land Value Estimator</h4>
         <p>Sophisticated valuation with development analysis</p>
       </a>
-      <a href="#" class="tool-card">
+      <div class="tool-card" onclick="openModal('noteCalculator')" style="cursor: pointer;">
         <div class="tool-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V13.5zm0 2.25h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V18zm2.498-6.75h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V13.5zm0 2.25h.007v.008h-.007v-.008zm0 2.25h.007v.008h-.007V18zm2.504-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zm0 2.25h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V18zm2.498-6.75h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V13.5zM8.25 6h7.5v2.25h-7.5V6zM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 002.25 2.25h10.5a2.25 2.25 0 002.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0012 2.25z"/></svg>
         </div>
-        <h4>Investment Tracker</h4>
-        <p>Real-time portfolio monitoring dashboard</p>
-      </a>
+        <h4>Mobile Home Note Calculator</h4>
+        <p>Structure owner-financing terms and payment schedules</p>
+      </div>
     </div>
   </section>
 
@@ -1426,6 +1887,570 @@
     </div>
   </footer>
 
+  <!-- Mobile Home Analyzer Modal -->
+  <div class="modal-overlay" id="mobilehomeModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-header-content">
+          <h2>Mobile Home Investment Analyzer</h2>
+          <p>Comprehensive deal analysis with multiple exit strategies</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('mobilehome')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Deal Name -->
+        <div class="calc-section">
+          <div class="calc-field">
+            <label>Deal Name / Nickname</label>
+            <input type="text" id="mh_dealName" class="calc-input-full" placeholder="e.g., Oak Park Mobile #12">
+          </div>
+        </div>
+
+        <!-- Deal Basics -->
+        <div class="calc-section" id="mh_dealBasics">
+          <div class="calc-section-header">
+            <div class="calc-section-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            </div>
+            <h3>Deal Basics</h3>
+          </div>
+          <div class="calc-grid cols-3">
+            <div class="calc-field">
+              <label>Purchase Price</label>
+              <div class="calc-input-wrapper">
+                <span class="calc-input-prefix">$</span>
+                <input type="number" id="mh_purchasePrice" class="calc-input">
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>Current Value (As-Is)</label>
+              <div class="calc-input-wrapper">
+                <span class="calc-input-prefix">$</span>
+                <input type="number" id="mh_currentValue" class="calc-input">
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>After Repair Value</label>
+              <div class="calc-input-wrapper">
+                <span class="calc-input-prefix">$</span>
+                <input type="number" id="mh_arv" class="calc-input">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Acquisition & Rehab -->
+        <div class="calc-section" id="mh_acquisitionRehab">
+          <div class="calc-section-header">
+            <div class="calc-section-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <h3>Acquisition & Rehab</h3>
+          </div>
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label>Repairs Budget</label>
+              <div class="calc-input-wrapper">
+                <span class="calc-input-prefix">$</span>
+                <input type="number" id="mh_repairs" class="calc-input">
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>Misc/Setup Costs</label>
+              <div class="calc-input-wrapper">
+                <span class="calc-input-prefix">$</span>
+                <input type="number" id="mh_miscCosts" class="calc-input">
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>Closing Costs</label>
+              <div class="calc-input-wrapper">
+                <span class="calc-input-prefix">$</span>
+                <input type="number" id="mh_closingCosts" class="calc-input">
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>Holding Period</label>
+              <div class="calc-input-wrapper">
+                <input type="number" id="mh_holdingMonths" class="calc-input no-prefix has-suffix" value="6">
+                <span class="calc-input-suffix">months</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Monthly Expenses -->
+        <div class="calc-section" id="mh_monthlyExpenses">
+          <div class="calc-section-header">
+            <div class="calc-section-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <h3>Monthly Expenses</h3>
+          </div>
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label>Taxes (Monthly)</label>
+              <div class="calc-input-wrapper">
+                <span class="calc-input-prefix">$</span>
+                <input type="number" id="mh_taxesMonthly" class="calc-input">
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>Insurance (Monthly)</label>
+              <div class="calc-input-wrapper">
+                <span class="calc-input-prefix">$</span>
+                <input type="number" id="mh_insuranceMonthly" class="calc-input">
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>Lot Rent</label>
+              <div class="calc-input-wrapper">
+                <span class="calc-input-prefix">$</span>
+                <input type="number" id="mh_lotRent" class="calc-input">
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>Owner-Paid Utilities</label>
+              <div class="calc-input-wrapper">
+                <span class="calc-input-prefix">$</span>
+                <input type="number" id="mh_utilities" class="calc-input">
+              </div>
+            </div>
+            <div class="calc-field span-2">
+              <label>Other Monthly Costs (HOA, Park Fees)</label>
+              <div class="calc-input-wrapper">
+                <span class="calc-input-prefix">$</span>
+                <input type="number" id="mh_otherMonthly" class="calc-input">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rental Income -->
+        <div class="calc-section" id="mh_rentalIncome">
+          <div class="calc-section-header">
+            <div class="calc-section-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            </div>
+            <h3>Rental Income & Assumptions</h3>
+          </div>
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label>Expected Monthly Rent</label>
+              <div class="calc-input-wrapper">
+                <span class="calc-input-prefix">$</span>
+                <input type="number" id="mh_rent" class="calc-input">
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>Vacancy Rate</label>
+              <div class="calc-input-wrapper">
+                <input type="number" id="mh_vacancyPct" class="calc-input no-prefix has-suffix" value="8">
+                <span class="calc-input-suffix">%</span>
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>Management Fee</label>
+              <div class="calc-input-wrapper">
+                <input type="number" id="mh_mgmtPct" class="calc-input no-prefix has-suffix" value="8">
+                <span class="calc-input-suffix">%</span>
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>Maintenance / CapEx</label>
+              <div class="calc-input-wrapper">
+                <input type="number" id="mh_maintPct" class="calc-input no-prefix has-suffix" value="8">
+                <span class="calc-input-suffix">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exit Strategies -->
+        <div class="calc-section">
+          <div class="calc-section-header">
+            <div class="calc-section-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <h3>Exit Strategies</h3>
+          </div>
+          <div class="exit-buttons">
+            <button class="exit-btn active" id="mh_exitRent" onclick="toggleExit('rent')">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              <span>Hold & Rent</span>
+            </button>
+            <button class="exit-btn" id="mh_exitFlip" onclick="toggleExit('flip')">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              <span>Flip / Sell</span>
+            </button>
+            <button class="exit-btn" id="mh_exitWholesale" onclick="toggleExit('wholesale')">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+              <span>Wholesale</span>
+            </button>
+          </div>
+          <div class="calc-grid cols-3">
+            <div class="calc-field">
+              <label>Selling Costs (Flip)</label>
+              <div class="calc-input-wrapper">
+                <input type="number" id="mh_sellingCostsPct" class="calc-input no-prefix has-suffix" value="10">
+                <span class="calc-input-suffix">%</span>
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>Target Flip Margin</label>
+              <div class="calc-input-wrapper">
+                <input type="number" id="mh_targetFlipMargin" class="calc-input no-prefix has-suffix" value="20">
+                <span class="calc-input-suffix">% ARV</span>
+              </div>
+            </div>
+            <div class="calc-field">
+              <label>Assignment Fee</label>
+              <div class="calc-input-wrapper">
+                <span class="calc-input-prefix">$</span>
+                <input type="number" id="mh_assignmentFee" class="calc-input" value="5000">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analyze Button -->
+        <button class="calc-analyze-btn" onclick="analyzeMobileHome()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          <span>Analyze This Deal</span>
+        </button>
+
+        <!-- Results -->
+        <div class="calc-results" id="mh_results">
+          <!-- Results will be injected here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Home Note Calculator Modal -->
+  <div class="modal-overlay" id="noteCalculatorModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-header-content">
+          <h2>Mobile Home Note Calculator</h2>
+          <p>Structure owner-financing terms, payment amount, and full amortization schedule</p>
+        </div>
+        <button class="modal-close" onclick="closeModal('noteCalculator')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="mh-note-calculator">
+          <style>
+            #mh-note-calculator {
+              font-family: 'DM Sans', sans-serif;
+              max-width: 100%;
+              margin: 0;
+              padding: 0;
+              background: transparent;
+              border-radius: 0;
+              box-shadow: none;
+              color: var(--text);
+            }
+            #mh-note-calculator h1 {
+              display: none;
+            }
+            #mh-note-calculator h2 {
+              margin-top: 24px;
+              margin-bottom: 16px;
+              font-family: 'Playfair Display', serif;
+              font-size: 1.125rem;
+              font-weight: 500;
+              color: var(--navy);
+              border-bottom: 1px solid var(--border);
+              padding-bottom: 8px;
+            }
+            #mh-note-calculator h2:first-of-type {
+              margin-top: 0;
+            }
+            #mh-note-calculator p.subtext {
+              display: none;
+            }
+            #mh-note-calculator .grid {
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 16px;
+            }
+            #mh-note-calculator label {
+              font-size: 0.6875rem;
+              font-weight: 600;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              display: block;
+              margin-bottom: 8px;
+              color: var(--text-muted);
+            }
+            #mh-note-calculator input[type="number"],
+            #mh-note-calculator input[type="text"],
+            #mh-note-calculator input[type="date"] {
+              width: 100%;
+              box-sizing: border-box;
+              padding: 14px 16px;
+              border-radius: 6px;
+              border: 1px solid var(--border);
+              font-family: 'DM Sans', sans-serif;
+              font-size: 0.9375rem;
+              color: var(--text);
+              outline: none;
+              transition: all 0.3s;
+              background: white;
+            }
+            #mh-note-calculator input[type="number"]:focus,
+            #mh-note-calculator input[type="text"]:focus,
+            #mh-note-calculator input[type="date"]:focus {
+              border-color: var(--gold);
+              box-shadow: 0 0 0 3px rgba(184,149,110,0.15);
+            }
+            #mh-note-calculator .actions {
+              margin-top: 24px;
+              display: flex;
+              flex-wrap: wrap;
+              gap: 12px;
+              justify-content: flex-start;
+            }
+            #mh-note-calculator button {
+              border: none;
+              border-radius: 6px;
+              padding: 12px 24px;
+              font-family: 'DM Sans', sans-serif;
+              font-size: 0.8125rem;
+              font-weight: 500;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              cursor: pointer;
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              transition: all 0.3s;
+            }
+            #mh-note-calculator button.primary {
+              background: var(--navy);
+              color: #fff;
+            }
+            #mh-note-calculator button.primary:hover {
+              background: var(--gold-dark);
+              transform: translateY(-2px);
+              box-shadow: var(--shadow-md);
+            }
+            #mh-note-calculator button.secondary {
+              background: white;
+              color: var(--navy);
+              border: 1px solid var(--border);
+            }
+            #mh-note-calculator button.secondary:hover {
+              background: var(--bg-cream);
+              border-color: var(--gold);
+            }
+            #mh-note-calculator .summary {
+              margin-top: 28px;
+              padding: 24px;
+              border-radius: 8px;
+              background: var(--navy);
+              color: #f9fafb;
+              display: none;
+            }
+            #mh-note-calculator .summary-title {
+              display: flex;
+              justify-content: space-between;
+              align-items: baseline;
+              gap: 8px;
+              flex-wrap: wrap;
+              margin-bottom: 16px;
+            }
+            #mh-note-calculator .summary-title strong {
+              font-family: 'Playfair Display', serif;
+              font-size: 1.125rem;
+              color: white;
+            }
+            #mh-note-calculator .summary-title span.loan-name {
+              font-weight: 600;
+              font-size: 1rem;
+              color: var(--gold-light);
+            }
+            #mh-note-calculator .summary-grid {
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 16px;
+            }
+            #mh-note-calculator .summary-item span.label {
+              display: block;
+              font-size: 0.6875rem;
+              font-weight: 600;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+              color: rgba(255,255,255,0.5);
+              margin-bottom: 6px;
+            }
+            #mh-note-calculator .summary-item span.value {
+              font-family: 'Playfair Display', serif;
+              font-size: 1.25rem;
+              font-weight: 500;
+              color: white;
+            }
+            #mh-note-calculator table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 18px;
+              font-size: 0.8125rem;
+              background: white;
+            }
+            #mh-note-calculator thead {
+              background: var(--navy);
+            }
+            #mh-note-calculator th {
+              padding: 12px 10px;
+              text-align: right;
+              font-size: 0.6875rem;
+              font-weight: 600;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+              color: white;
+              border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            #mh-note-calculator th:first-child {
+              text-align: left;
+            }
+            #mh-note-calculator td {
+              padding: 10px;
+              border-bottom: 1px solid var(--border);
+              text-align: right;
+              white-space: nowrap;
+              color: var(--text);
+            }
+            #mh-note-calculator td:first-child {
+              text-align: left;
+            }
+            #mh-note-calculator tbody tr:nth-child(even) {
+              background: var(--bg-cream);
+            }
+            #mh-note-calculator .table-wrapper {
+              max-height: 400px;
+              overflow: auto;
+              margin-top: 8px;
+              border-radius: 8px;
+              border: 1px solid var(--border);
+              background: white;
+              display: none;
+            }
+            #mh-note-calculator .error {
+              margin-top: 12px;
+              padding: 12px 16px;
+              border-radius: 6px;
+              font-size: 0.875rem;
+              color: #b91c1c;
+              background: #fee2e2;
+              border: 1px solid #fecaca;
+              display: none;
+            }
+            @media (max-width: 1024px) {
+              #mh-note-calculator .grid {
+                grid-template-columns: repeat(2, 1fr);
+              }
+              #mh-note-calculator .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+              }
+            }
+            @media (max-width: 640px) {
+              #mh-note-calculator .grid {
+                grid-template-columns: 1fr;
+              }
+              #mh-note-calculator .summary-grid {
+                grid-template-columns: 1fr;
+              }
+            }
+          </style>
+
+          <h2>Loan Inputs</h2>
+          <div class="grid">
+            <div>
+              <label for="mh-loan-name">Loan Name / Nickname</label>
+              <input type="text" id="mh-loan-name" placeholder="Example: Oak Park Mobile #12">
+            </div>
+            <div>
+              <label for="mh-purchase-price">Purchase Price</label>
+              <input type="number" id="mh-purchase-price" min="0" step="0.01" placeholder="Example: 50000">
+            </div>
+            <div>
+              <label for="mh-down-payment">Down Payment</label>
+              <input type="number" id="mh-down-payment" min="0" step="0.01" placeholder="Example: 10000">
+            </div>
+            <div>
+              <label for="mh-loan-amount">Loan Amount (auto-calculated)</label>
+              <input type="number" id="mh-loan-amount" min="0" step="0.01" placeholder="Auto-calculated" readonly style="background: var(--bg-cream);">
+            </div>
+            <div>
+              <label for="mh-rate">Interest Rate (annual, %)</label>
+              <input type="number" id="mh-rate" min="0" step="0.01" placeholder="Example: 9.5">
+            </div>
+            <div>
+              <label for="mh-term-months">Term in Months</label>
+              <input type="number" id="mh-term-months" min="1" step="1" placeholder="Example: 120">
+            </div>
+            <div>
+              <label for="mh-start-date">First Payment Date (optional)</label>
+              <input type="date" id="mh-start-date">
+            </div>
+          </div>
+          <div class="actions">
+            <button type="button" class="primary" id="mh-calc-btn">Calculate &amp; Build Schedule</button>
+            <button type="button" class="secondary" id="mh-clear-btn">Clear</button>
+            <button type="button" class="secondary" id="mh-print-btn">Print</button>
+            <button type="button" class="secondary" id="mh-download-btn">Download CSV</button>
+          </div>
+          <div class="error" id="mh-error"></div>
+          <div class="summary" id="mh-summary">
+            <div class="summary-title">
+              <strong>Loan Summary</strong>
+              <span class="loan-name" id="mh-sum-loan-name"></span>
+            </div>
+            <div class="summary-grid">
+              <div class="summary-item">
+                <span class="label">Monthly Payment</span>
+                <span class="value" id="mh-sum-payment">$0.00</span>
+              </div>
+              <div class="summary-item">
+                <span class="label">Number of Payments</span>
+                <span class="value" id="mh-sum-nper">0</span>
+              </div>
+              <div class="summary-item">
+                <span class="label">Total of Payments</span>
+                <span class="value" id="mh-sum-total">$0.00</span>
+              </div>
+              <div class="summary-item">
+                <span class="label">Total Interest</span>
+                <span class="value" id="mh-sum-interest">$0.00</span>
+              </div>
+            </div>
+          </div>
+          <h2>Amortization Schedule</h2>
+          <div class="table-wrapper" id="mh-table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Due Date</th>
+                  <th>Payment</th>
+                  <th>Principal</th>
+                  <th>Interest</th>
+                  <th>Ending Balance</th>
+                </tr>
+              </thead>
+              <tbody id="mh-tbody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1442,6 +2467,496 @@
       el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
       observer.observe(el);
     });
+
+    // Mobile Home Analyzer Functions
+    const exitState = { rent: true, flip: false, wholesale: false };
+
+    function updateSectionVisibility() {
+      const isWholesaleOnly = exitState.wholesale && !exitState.rent && !exitState.flip;
+      
+      // Deal Basics - always show, but adjust fields for wholesale
+      const dealBasics = document.getElementById('mh_dealBasics');
+      if (dealBasics) {
+        const fields = dealBasics.querySelectorAll('.calc-field');
+        if (isWholesaleOnly) {
+          // For wholesale only, show: Purchase Price, Current Value, ARV
+          fields.forEach((field, index) => {
+            field.style.display = index < 3 ? 'flex' : 'none';
+          });
+        } else {
+          fields.forEach(field => field.style.display = 'flex');
+        }
+      }
+      
+      // Acquisition & Rehab - show only Misc Costs for wholesale only
+      const acquisitionRehab = document.getElementById('mh_acquisitionRehab');
+      if (acquisitionRehab) {
+        if (isWholesaleOnly) {
+          acquisitionRehab.style.display = 'block';
+          const fields = acquisitionRehab.querySelectorAll('.calc-field');
+          fields.forEach((field, index) => {
+            field.style.display = index === 1 ? 'flex' : 'none'; // Show only Misc Costs
+          });
+        } else {
+          acquisitionRehab.style.display = 'block';
+          const fields = acquisitionRehab.querySelectorAll('.calc-field');
+          fields.forEach(field => field.style.display = 'flex');
+        }
+      }
+      
+      // Monthly Expenses - hide for wholesale only
+      const monthlyExpenses = document.getElementById('mh_monthlyExpenses');
+      if (monthlyExpenses) {
+        monthlyExpenses.style.display = isWholesaleOnly ? 'none' : 'block';
+      }
+      
+      // Rental Income - hide for wholesale only
+      const rentalIncome = document.getElementById('mh_rentalIncome');
+      if (rentalIncome) {
+        rentalIncome.style.display = isWholesaleOnly ? 'none' : 'block';
+      }
+      
+      // Exit Strategy inputs - hide flip inputs for wholesale only
+      const exitInputs = document.querySelectorAll('#mh_sellingCostsPct, #mh_targetFlipMargin, #mh_assignmentFee');
+      exitInputs.forEach(input => {
+        if (input) {
+          const field = input.closest('.calc-field');
+          if (field) {
+            field.style.display = isWholesaleOnly ? 'none' : 'flex';
+          }
+        }
+      });
+    }
+
+    function toggleExit(type) {
+      exitState[type] = !exitState[type];
+      const btnId = 'mh_exit' + type.charAt(0).toUpperCase() + type.slice(1);
+      document.getElementById(btnId).classList.toggle('active', exitState[type]);
+      updateSectionVisibility();
+    }
+
+    function openModal(type) {
+      document.getElementById(type + 'Modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Initialize exit strategy visibility
+      if (type === 'mobilehome') {
+        updateSectionVisibility();
+      }
+    }
+
+    function closeModal(type) {
+      document.getElementById(type + 'Modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on overlay click
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+
+    function n(id) { return parseFloat(document.getElementById(id).value) || 0; }
+    function fmt(v) { return v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+    function analyzeMobileHome() {
+      const pp = n('mh_purchasePrice'), arvVal = n('mh_arv'), repairsVal = n('mh_repairs');
+      const miscVal = n('mh_miscCosts'), closeVal = n('mh_closingCosts'), holdMonths = n('mh_holdingMonths');
+      const taxes = n('mh_taxesMonthly'), ins = n('mh_insuranceMonthly'), lot = n('mh_lotRent');
+      const util = n('mh_utilities'), other = n('mh_otherMonthly');
+      const rentVal = n('mh_rent'), vac = n('mh_vacancyPct') / 100, mgmt = n('mh_mgmtPct') / 100, maint = n('mh_maintPct') / 100;
+      const sellPct = n('mh_sellingCostsPct') / 100;
+      const flipMargin = n('mh_targetFlipMargin') / 100, assignFee = n('mh_assignmentFee');
+      const dealName = document.getElementById('mh_dealName').value || 'Deal';
+
+      // Calculations
+      const totalAcquisition = pp + closeVal;
+      const allInCost = pp + closeVal + repairsVal + miscVal;
+      const equityAtARV = arvVal - allInCost;
+      const equityPct = arvVal > 0 ? (equityAtARV / arvVal) * 100 : 0;
+
+      // Rental (no financing)
+      const vacAdjRent = rentVal * (1 - vac);
+      const mgmtFee = rentVal * mgmt, maintFee = rentVal * maint;
+      const totalMonthlyExp = taxes + ins + lot + util + other + mgmtFee + maintFee;
+      const monthlyCashflow = vacAdjRent - totalMonthlyExp;
+      const annualCashflow = monthlyCashflow * 12;
+      const cashIn = pp + closeVal + repairsVal + miscVal;
+      const coc = cashIn > 0 ? (annualCashflow / cashIn) * 100 : 0;
+      const noi = (vacAdjRent - (taxes + ins + lot + util + other + mgmtFee + maintFee)) * 12;
+      const capRate = allInCost > 0 ? (noi / allInCost) * 100 : 0;
+
+      // Flip
+      const sellCosts = arvVal * sellPct;
+      const holdCosts = (taxes + ins + lot + util + other) * holdMonths;
+      const totalFlipCost = allInCost + holdCosts + sellCosts;
+      const flipProfit = arvVal - totalFlipCost;
+      const flipROI = cashIn > 0 ? (flipProfit / cashIn) * 100 : 0;
+      const mao = arvVal * (1 - flipMargin) - repairsVal - miscVal - closeVal - holdCosts;
+
+      // Wholesale - Profit from Deal
+      const wholesaleProfit = arvVal - pp - miscVal;
+
+      // Build HTML
+      let html = `
+        <div class="results-summary">
+          <div class="results-summary-header">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+            <h3>${dealName} — Summary</h3>
+          </div>
+          <div class="results-summary-grid">
+            <div class="summary-metric">
+              <div class="summary-metric-label">Total Acquisition</div>
+              <div class="summary-metric-value">$${fmt(totalAcquisition)}</div>
+            </div>
+            <div class="summary-metric">
+              <div class="summary-metric-label">All-In Cost</div>
+              <div class="summary-metric-value">$${fmt(allInCost)}</div>
+            </div>
+            <div class="summary-metric highlight">
+              <div class="summary-metric-label">Equity at ARV</div>
+              <div class="summary-metric-value">$${fmt(equityAtARV)}</div>
+            </div>
+            <div class="summary-metric highlight">
+              <div class="summary-metric-label">Equity Percentage</div>
+              <div class="summary-metric-value">${fmt(equityPct)}%</div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      if (exitState.rent) {
+        html += `
+          <div class="results-card">
+            <div class="results-card-header rental">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              <h4>Rental Analysis</h4>
+            </div>
+            <div class="results-card-body">
+              <div class="result-metric">
+                <div class="result-metric-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                <div class="result-metric-label">Vacancy-Adjusted Rent</div>
+                <div class="result-metric-value">$${fmt(vacAdjRent)}</div>
+              </div>
+              <div class="result-metric">
+                <div class="result-metric-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/></svg></div>
+                <div class="result-metric-label">Monthly Expenses</div>
+                <div class="result-metric-value">$${fmt(totalMonthlyExp)}</div>
+              </div>
+              <div class="result-metric highlight">
+                <div class="result-metric-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+                <div class="result-metric-label">Monthly Cashflow</div>
+                <div class="result-metric-value">$${fmt(monthlyCashflow)}</div>
+              </div>
+              <div class="result-metric highlight">
+                <div class="result-metric-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
+                <div class="result-metric-label">Annual Cashflow</div>
+                <div class="result-metric-value">$${fmt(annualCashflow)}</div>
+              </div>
+              <div class="result-metric highlight">
+                <div class="result-metric-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+                <div class="result-metric-label">Cash-on-Cash Return</div>
+                <div class="result-metric-value">${fmt(coc)}%</div>
+              </div>
+              <div class="result-metric">
+                <div class="result-metric-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+                <div class="result-metric-label">Cap Rate</div>
+                <div class="result-metric-value">${fmt(capRate)}%</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (exitState.flip) {
+        html += `
+          <div class="results-card">
+            <div class="results-card-header flip">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              <h4>Flip Analysis</h4>
+            </div>
+            <div class="results-card-body">
+              <div class="result-metric">
+                <div class="result-metric-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg></div>
+                <div class="result-metric-label">Selling Costs</div>
+                <div class="result-metric-value">$${fmt(sellCosts)}</div>
+              </div>
+              <div class="result-metric">
+                <div class="result-metric-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                <div class="result-metric-label">Holding Costs</div>
+                <div class="result-metric-value">$${fmt(holdCosts)}</div>
+              </div>
+              <div class="result-metric">
+                <div class="result-metric-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+                <div class="result-metric-label">Total Cost</div>
+                <div class="result-metric-value">$${fmt(totalFlipCost)}</div>
+              </div>
+              <div class="result-metric highlight">
+                <div class="result-metric-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                <div class="result-metric-label">Net Profit</div>
+                <div class="result-metric-value">$${fmt(flipProfit)}</div>
+              </div>
+              <div class="result-metric highlight">
+                <div class="result-metric-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+                <div class="result-metric-label">ROI</div>
+                <div class="result-metric-value">${fmt(flipROI)}%</div>
+              </div>
+              <div class="result-metric highlight span-2">
+                <div class="result-metric-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+                <div class="result-metric-label">Suggested MAO (Max Allowable Offer)</div>
+                <div class="result-metric-value">$${fmt(mao)}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (exitState.wholesale) {
+        html += `
+          <div class="results-card">
+            <div class="results-card-header wholesale">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+              <h4>Wholesale Analysis</h4>
+            </div>
+            <div class="results-card-body">
+              <div class="result-metric highlight span-2">
+                <div class="result-metric-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                <div class="result-metric-label">Profit from Deal</div>
+                <div class="result-metric-value">$${fmt(wholesaleProfit)}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      const resultsDiv = document.getElementById('mh_results');
+      resultsDiv.innerHTML = html;
+      resultsDiv.classList.add('visible');
+      resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Mobile Home Note Calculator
+    (function () {
+      const loanNameEl = document.getElementById('mh-loan-name');
+      const purchasePriceEl = document.getElementById('mh-purchase-price');
+      const downPaymentEl = document.getElementById('mh-down-payment');
+      const loanEl = document.getElementById('mh-loan-amount');
+      const rateEl = document.getElementById('mh-rate');
+      const termEl = document.getElementById('mh-term-months');
+      const startDateEl = document.getElementById('mh-start-date');
+      const errorEl = document.getElementById('mh-error');
+      const summaryEl = document.getElementById('mh-summary');
+      const tbodyEl = document.getElementById('mh-tbody');
+      const tableWrapperEl = document.getElementById('mh-table-wrapper');
+      const sumPaymentEl = document.getElementById('mh-sum-payment');
+      const sumNperEl = document.getElementById('mh-sum-nper');
+      const sumTotalEl = document.getElementById('mh-sum-total');
+      const sumInterestEl = document.getElementById('mh-sum-interest');
+      const sumLoanNameEl = document.getElementById('mh-sum-loan-name');
+      const calcBtn = document.getElementById('mh-calc-btn');
+      const clearBtn = document.getElementById('mh-clear-btn');
+      const printBtn = document.getElementById('mh-print-btn');
+      const downloadBtn = document.getElementById('mh-download-btn');
+
+      if (!loanEl || !calcBtn) return; // Exit if elements don't exist
+
+      let lastSchedule = []; // store schedule for CSV
+      let lastLoanName = ''; // store loan name for CSV
+
+      // Auto-calculate loan amount from purchase price - down payment
+      function updateLoanAmount() {
+        const purchasePrice = parseFloat(purchasePriceEl.value) || 0;
+        const downPayment = parseFloat(downPaymentEl.value) || 0;
+        const loanAmount = Math.max(0, purchasePrice - downPayment);
+        loanEl.value = loanAmount.toFixed(2);
+      }
+
+      purchasePriceEl.addEventListener('input', updateLoanAmount);
+      downPaymentEl.addEventListener('input', updateLoanAmount);
+
+      function formatCurrency(num) {
+        return '$' + Number(num).toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+      }
+
+      function formatDate(date) {
+        if (!date) return '';
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return month + '/' + day + '/' + year;
+      }
+
+      function addMonths(date, months) {
+        const d = new Date(date.getTime());
+        const day = d.getDate();
+        d.setMonth(d.getMonth() + months);
+        // handle month rollover (e.g., Jan 31 -> Feb 28/29)
+        if (d.getDate() < day) {
+          d.setDate(0);
+        }
+        return d;
+      }
+
+      function calculateSchedule() {
+        errorEl.style.display = 'none';
+        summaryEl.style.display = 'none';
+        tableWrapperEl.style.display = 'none';
+        tbodyEl.innerHTML = '';
+        lastSchedule = [];
+
+        // Update loan amount first
+        updateLoanAmount();
+        
+        const principal = parseFloat(loanEl.value);
+        const rateAnnual = parseFloat(rateEl.value);
+        const nper = parseInt(termEl.value, 10);
+        const loanName = loanNameEl.value.trim() || 'Unnamed Loan';
+
+        if (!principal || principal <= 0 || (rateAnnual === undefined || rateAnnual < 0) || !nper || nper <= 0) {
+          errorEl.textContent = 'Please enter a valid purchase price, down payment, interest rate, and term in months.';
+          errorEl.style.display = 'block';
+          return;
+        }
+
+        lastLoanName = loanName;
+
+        const r = rateAnnual / 100 / 12; // monthly rate
+        let payment;
+        if (r === 0) {
+          payment = principal / nper;
+        } else {
+          const factor = Math.pow(1 + r, -nper);
+          payment = principal * r / (1 - factor);
+        }
+        payment = Number(payment.toFixed(2));
+
+        let balance = principal;
+        let totalInterest = 0;
+        let totalPaid = 0;
+        let startDate = null;
+        if (startDateEl.value) {
+          startDate = new Date(startDateEl.value + 'T00:00:00');
+        }
+
+        for (let i = 1; i <= nper; i++) {
+          let interest = r === 0 ? 0 : balance * r;
+          let principalPaid = payment - interest;
+
+          // Protect against rounding issues on final payment
+          if (i === nper) {
+            principalPaid = balance;
+            payment = principalPaid + interest;
+          }
+
+          interest = Number(interest.toFixed(2));
+          principalPaid = Number(principalPaid.toFixed(2));
+          balance = Number((balance - principalPaid).toFixed(2));
+          if (balance < 0) balance = 0;
+
+          totalInterest += interest;
+          totalPaid += payment;
+
+          let dueDate = '';
+          if (startDate) {
+            const d = addMonths(startDate, i - 1);
+            dueDate = formatDate(d);
+          }
+
+          const row = {
+            paymentNumber: i,
+            dueDate,
+            payment: payment,
+            principal: principalPaid,
+            interest: interest,
+            balance: balance
+          };
+          lastSchedule.push(row);
+        }
+
+        // Build table HTML
+        const rowsHtml = lastSchedule.map(row => `
+          <tr>
+            <td>${row.paymentNumber}</td>
+            <td>${row.dueDate || '-'}</td>
+            <td>${formatCurrency(row.payment)}</td>
+            <td>${formatCurrency(row.principal)}</td>
+            <td>${formatCurrency(row.interest)}</td>
+            <td>${formatCurrency(row.balance)}</td>
+          </tr>
+        `).join('');
+
+        tbodyEl.innerHTML = rowsHtml;
+        tableWrapperEl.style.display = 'block';
+
+        // Summary
+        sumPaymentEl.textContent = formatCurrency(lastSchedule[0].payment);
+        sumNperEl.textContent = nper.toString();
+        sumTotalEl.textContent = formatCurrency(totalPaid);
+        sumInterestEl.textContent = formatCurrency(totalInterest);
+        sumLoanNameEl.textContent = loanName;
+        summaryEl.style.display = 'block';
+      }
+
+      function clearAll() {
+        loanNameEl.value = '';
+        purchasePriceEl.value = '';
+        downPaymentEl.value = '';
+        loanEl.value = '';
+        rateEl.value = '';
+        termEl.value = '';
+        startDateEl.value = '';
+        errorEl.style.display = 'none';
+        summaryEl.style.display = 'none';
+        tableWrapperEl.style.display = 'none';
+        tbodyEl.innerHTML = '';
+        lastSchedule = [];
+        lastLoanName = '';
+      }
+
+      function downloadCSV() {
+        if (!lastSchedule.length) {
+          alert('Please calculate a schedule first.');
+          return;
+        }
+
+        const loanName = lastLoanName || 'Unnamed Loan';
+        const fileName = loanName.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '_amortization.csv';
+        
+        const header = ['Loan Name', 'Payment #', 'Due Date', 'Payment', 'Principal', 'Interest', 'Ending Balance'];
+        const rows = lastSchedule.map(row => [
+          loanName,
+          row.paymentNumber,
+          row.dueDate || '',
+          row.payment.toFixed(2),
+          row.principal.toFixed(2),
+          row.interest.toFixed(2),
+          row.balance.toFixed(2)
+        ]);
+
+        const csvLines = [header.join(','), ...rows.map(r => r.join(','))];
+        const csvContent = csvLines.join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      calcBtn.addEventListener('click', calculateSchedule);
+      clearBtn.addEventListener('click', clearAll);
+      printBtn.addEventListener('click', () => window.print());
+      downloadBtn.addEventListener('click', downloadCSV);
+    })();
   </script>
 </body>
 </html>
