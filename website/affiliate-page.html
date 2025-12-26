@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommended Resources | Jason Mathew</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-ivory: #F8F6F1;
+      --bg-cream: #F3F0E8;
+      --bg-warm: #EBE6DB;
+      --navy: #1B2B3A;
+      --navy-light: #2A3F52;
+      --navy-dark: #0F1A24;
+      --gold: #B8956E;
+      --gold-light: #D4B896;
+      --gold-dark: #96754A;
+      --forest: #3D4F44;
+      --text: #1B2B3A;
+      --text-muted: #5D6A75;
+      --text-subtle: #8A9299;
+      --border: rgba(27,43,58,0.1);
+      --border-gold: rgba(184,149,110,0.3);
+      --shadow-sm: 0 2px 20px rgba(27,43,58,0.06);
+      --shadow-md: 0 8px 40px rgba(27,43,58,0.1);
+      --shadow-lg: 0 20px 60px rgba(27,43,58,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg-ivory); color: var(--text); line-height: 1.7; }
+    .serif { font-family: 'Playfair Display', serif; }
+    ::selection { background: var(--gold); color: white; }
+    
+    /* Navigation */
+    nav {
+      background: var(--bg-ivory);
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+    }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.625rem; font-weight: 500; color: var(--navy); text-decoration: none; }
+    .logo span { color: var(--gold); }
+    .nav-center { display: flex; gap: 40px; list-style: none; }
+    .nav-center a { color: var(--text-muted); text-decoration: none; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-center a:hover { color: var(--navy); }
+    .nav-cta { padding: 14px 28px; background: var(--navy); color: white; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+    .nav-cta:hover { background: var(--gold-dark); transform: translateY(-2px); }
+
+    /* Hero */
+    .page-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+      padding: 100px 60px 120px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(184,149,110,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .page-hero .section-tag {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .page-hero .section-tag::before, .page-hero .section-tag::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 400;
+      color: white;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--gold-light); }
+    .page-hero p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.0625rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.85;
+      position: relative;
+    }
+
+    /* Filter Bar */
+    .filter-section {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 0 60px;
+      position: sticky;
+      top: 74px;
+      z-index: 90;
+    }
+    .filter-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 20px 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .filter-container::-webkit-scrollbar { display: none; }
+    .filter-btn {
+      padding: 12px 24px;
+      background: transparent;
+      border: 1.5px solid var(--border);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .filter-btn svg { width: 16px; height: 16px; transition: color 0.3s; }
+    .filter-btn:hover { border-color: var(--gold); color: var(--navy); }
+    .filter-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: white;
+    }
+    .filter-btn.active svg { color: var(--gold-light); }
+
+    /* Products Grid */
+    .products-section { padding: 80px 60px 120px; }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    /* Product Card */
+    .product-card {
+      background: white;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    .product-card:nth-child(1) { animation-delay: 0.05s; }
+    .product-card:nth-child(2) { animation-delay: 0.1s; }
+    .product-card:nth-child(3) { animation-delay: 0.15s; }
+    .product-card:nth-child(4) { animation-delay: 0.2s; }
+    .product-card:nth-child(5) { animation-delay: 0.25s; }
+    .product-card:nth-child(6) { animation-delay: 0.3s; }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-gold);
+    }
+    .product-card:hover::before { transform: scaleX(1); }
+    .product-card-header {
+      padding: 28px 28px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .product-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 50%, var(--navy-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(27, 43, 58, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.3s;
+    }
+    .product-card:hover .product-icon {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(27, 43, 58, 0.3);
+    }
+    .product-icon svg { width: 24px; height: 24px; color: var(--gold-light); }
+    .product-meta { flex: 1; min-width: 0; }
+    .product-category {
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+    .product-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1875rem;
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .product-body { padding: 20px 28px 28px; }
+    .product-description {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .product-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background: var(--navy);
+      color: white;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .product-link:hover {
+      background: var(--gold-dark);
+      transform: translateX(4px);
+    }
+    .product-link svg { width: 14px; height: 14px; transition: transform 0.3s; }
+    .product-link:hover svg { transform: translateX(4px); }
+    .product-badge {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--forest);
+      background: rgba(61, 79, 68, 0.1);
+      padding: 6px 12px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Category Section Headers */
+    .category-header {
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .category-header-left { max-width: 600px; }
+    .category-header .section-tag {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .category-header .section-tag::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .category-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 400;
+      color: var(--navy);
+    }
+    .category-count {
+      font-size: 0.8125rem;
+      color: var(--text-subtle);
+      white-space: nowrap;
+    }
+    .category-count strong { color: var(--gold-dark); }
+
+    /* Footer */
+    footer {
+      background: var(--navy-dark);
+      padding: 80px 60px 40px;
+      color: white;
+    }
+    
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 64px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .footer-brand .logo { font-size: 1.75rem; }
+    
+    .footer-brand p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9375rem;
+      line-height: 1.8;
+      max-width: 280px;
+      margin-top: 20px;
+    }
+    
+    .footer-heading {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 24px;
+    }
+    
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 12px; }
+    
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover { color: white; }
+    
+    .social-links { display: flex; gap: 12px; }
+    
+    .social-links a {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.6);
+      transition: all 0.3s;
+    }
+    
+    .social-links a:hover { border-color: var(--gold); color: var(--gold); background: rgba(184,149,110,0.1); }
+    .social-links svg { width: 18px; height: 18px; }
+    
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 32px;
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Financial Tools Section */
+    .financial-section {
+      background: var(--navy);
+      padding: 100px 60px;
+      margin: 0 -60px 100px;
+    }
+    
+    .financial-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .financial-header .section-tag {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .financial-header .section-tag::before,
+    .financial-header .section-tag::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+    
+    .financial-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: white;
+      margin-bottom: 16px;
+    }
+    
+    .financial-header p {
+      color: rgba(255,255,255,0.7);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .financial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .financial-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 40px 32px;
+      text-align: center;
+      transition: all 0.4s;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .financial-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--gold);
+      transform: translateY(-6px);
+    }
+    
+    .financial-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .financial-icon svg {
+      width: 28px;
+      height: 28px;
+      color: white;
+    }
+    
+    .financial-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.375rem;
+      font-weight: 500;
+      color: white;
+      margin-bottom: 12px;
+    }
+    
+    .financial-card p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    
+    .financial-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold-light);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    
+    .financial-link svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s;
+    }
+    
+    .financial-card:hover .financial-link svg {
+      transform: translateX(4px);
+    }
+
+    /* No Results */
+    .no-results {
+      text-align: center;
+      padding: 80px 40px;
+      display: none;
+    }
+    .no-results.visible { display: block; }
+    .no-results svg { width: 64px; height: 64px; color: var(--text-subtle); margin-bottom: 24px; }
+    .no-results h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .no-results p { color: var(--text-muted); }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      nav { padding: 16px 24px; }
+      .nav-center, .nav-cta { display: none; }
+      .page-hero { padding: 60px 24px 80px; }
+      .filter-section { padding: 0 24px; }
+      .products-section { padding: 60px 24px 80px; }
+      .financial-section { padding: 80px 24px; margin: 0 -24px 80px; }
+      .financial-grid { grid-template-columns: repeat(2, 1fr); }
+      footer { padding: 60px 24px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 640px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .category-header { flex-direction: column; align-items: flex-start; }
+      .product-card-header { flex-direction: column; }
+      .financial-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">Jason<span>.</span>Mathew</a>
+    <ul class="nav-center">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#expertise">Expertise</a></li>
+      <li><a href="index.html#tools">Tools</a></li>
+      <li><a href="affiliate-page.html">Recommended Resources</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="index.html#contact" class="nav-cta">Book a Call</a>
+  </nav>
+
+  <section class="page-hero">
+    <p class="section-tag">Curated Resources</p>
+    <h1 class="serif">Tools &amp; Products <em>I Trust</em></h1>
+    <p>Every product on this page has been personally vetted and used in my real estate investments. These are the exact tools that help me close deals, renovate properties, and build wealth.</p>
+  </section>
+
+  <div class="filter-section">
+    <div class="filter-container">
+      <button class="filter-btn active" data-filter="all">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        All Products
+      </button>
+      <button class="filter-btn" data-filter="mobile-homes">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        Mobile Homes
+      </button>
+      <button class="filter-btn" data-filter="tools">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Tools
+      </button>
+      <button class="filter-btn" data-filter="electronics">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        Electronics
+      </button>
+      <button class="filter-btn" data-filter="land">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+        Land
+      </button>
+    </div>
+  </div>
+
+  <section class="products-section">
+    <div class="category-header">
+      <div class="category-header-left">
+        <p class="section-tag">Recommended Products</p>
+        <h2 class="serif">Essential Resources for Real Estate Success</h2>
+      </div>
+      <p class="category-count">Showing <strong id="productCount">37</strong> products</p>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+
+    <div class="no-results" id="noResults">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      <h3>No Products Found</h3>
+      <p>Try selecting a different category to find what you need.</p>
+    </div>
+  </section>
+
+  <!-- Financial Section -->
+  <section class="financial-section" id="investing">
+    <div class="financial-header">
+      <p class="section-tag">Wealth Building</p>
+      <h2 class="serif">Investment Platforms</h2>
+      <p>The financial tools and platforms I use to grow wealth alongside real estate</p>
+    </div>
+    <div class="financial-grid">
+      <a href="#" class="financial-card">
+        <div class="financial-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+        </div>
+        <h3>M1 Finance</h3>
+        <p>Automated investing with customizable portfolios. Perfect for building wealth on autopilot.</p>
+        <span class="financial-link">
+          Learn More
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </span>
+      </a>
+      <a href="#" class="financial-card">
+        <div class="financial-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3>Robinhood</h3>
+        <p>Commission-free stock trading with an intuitive interface for active investors.</p>
+        <span class="financial-link">
+          Learn More
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </span>
+      </a>
+      <a href="#" class="financial-card">
+        <div class="financial-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <h3>Acorns</h3>
+        <p>Round-up investing that turns spare change into a diversified portfolio.</p>
+        <span class="financial-link">
+          Learn More
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </span>
+      </a>
+      <a href="#" class="financial-card">
+        <div class="financial-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h3>Credit Karma</h3>
+        <p>Free credit monitoring and financial insights to optimize your borrowing power.</p>
+        <span class="financial-link">
+          Learn More
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </span>
+      </a>
+      <a href="#" class="financial-card">
+        <div class="financial-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3>eToro</h3>
+        <p>Social trading platform with copy trading features for stocks and crypto.</p>
+        <span class="financial-link">
+          Learn More
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </span>
+      </a>
+      <a href="#" class="financial-card">
+        <div class="financial-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        </div>
+        <h3>SoFi</h3>
+        <p>All-in-one financial platform for investing, banking, and personal loans.</p>
+        <span class="financial-link">
+          Learn More
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Jason<span>.</span>Mathew</a>
+        <p>Building wealth through mobile homes, land investing, and smart business strategies.</p>
+      </div>
+      <div>
+        <h4 class="footer-heading">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#expertise">Expertise</a></li>
+          <li><a href="index.html#tools">Tools</a></li>
+          <li><a href="affiliate-page.html">Recommended Resources</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Resources</h4>
+        <ul class="footer-links">
+          <li><a href="affiliate-page.html">Recommended Resources</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Connect</h4>
+        <div class="social-links">
+          <a href="#"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+          <a href="#"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="1.5"/><path stroke-width="1.5" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg></a>
+          <a href="#"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Jason Mathew. All rights reserved.</p>
+      <p>Building Wealth Through Strategic Investments</p>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      // Mobile Homes - Roofing & Exterior
+      { id: 1, name: "HENRY Aluminum Roof Coating", desc: "Premium 5-gallon fibered aluminum roof sealant specifically designed for mobile homes and RVs. Provides long-lasting protection against leaks and UV damage.", category: "mobile-homes", link: "https://amzn.to/46fjB7G", badge: "Best Seller", icon: "roof" },
+      { id: 2, name: "Mobile Home Underbelly Kit", desc: "A.A Mobile Flex polyethylene bottom board material. 48\" x 14' kit for professional underbelly repairs and replacements.", category: "mobile-homes", link: "https://amzn.to/424q2rJ", badge: "Essential", icon: "home" },
+      { id: 3, name: "Full Underbelly 16x80", desc: "Complete polyethylene fabric underbelly solution for 16' x 80' mobile homes. Professional-grade material for full replacement projects.", category: "mobile-homes", link: "https://amzn.to/4mFMGiD", badge: null, icon: "home" },
+      { id: 4, name: "Underbelly Repair Patch", desc: "4 inch x 100' flexible mend tape for quick underbelly hole and rip repairs. Essential for mobile home maintenance.", category: "mobile-homes", link: "https://amzn.to/4mzwq2t", badge: null, icon: "repair" },
+      { id: 5, name: "Elastomeric Cool Seal", desc: "Gardner STA-Kool 5-year turbo-dry white elastomeric roof coating. 5-gallon coverage for superior heat reflection.", category: "mobile-homes", link: "https://amzn.to/4phbwqP", badge: "Pro Pick", icon: "roof" },
+      { id: 6, name: "Rubber Flexx Leak Stopper", desc: "Liquid rubber coating for waterproof sealing on boats, roofs, and buildings. Versatile 1-quart black formula.", category: "mobile-homes", link: "https://amzn.to/4lQiPT6", badge: null, icon: "repair" },
+      { id: 7, name: "Roof Repair Fabric", desc: "Saint-Gobain FibaTape 6\" x 25' professional roof repair fabric. Black reinforcement mesh for lasting repairs.", category: "mobile-homes", link: "https://amzn.to/4p0IhIw", badge: null, icon: "repair" },
+      { id: 8, name: "Butyl Waterproof Tape", desc: "ADHES 4\" x 16' aluminum foil butyl sealant tape for RV, window, and EPDM rubber roof patching.", category: "mobile-homes", link: "https://amzn.to/4mIyEg6", badge: "High Quality", icon: "repair" },
+      { id: 9, name: "Window & Door Flashing", desc: "ZIP System Huber 3.75\" x 30' self-adhesive flashing tape for doors and windows. Professional weather sealing.", category: "mobile-homes", link: "https://amzn.to/4nb36PS", badge: null, icon: "window" },
+      { id: 10, name: "Liquid Nails Roof Repair", desc: "10.3 oz roof caulking for reliable leak repairs. Professional-grade adhesive for mobile home roofing.", category: "mobile-homes", link: "https://amzn.to/4lPB0Z2", badge: null, icon: "repair" },
+      
+      // Mobile Homes - Interior
+      { id: 11, name: "LED Flush Mount Lights", desc: "Super slim 12-inch 5000K LED ceiling lights. 12-pack bulk option perfect for complete mobile home remodels.", category: "mobile-homes", link: "https://amzn.to/41txo7U", badge: "Bulk Pack", icon: "light" },
+      { id: 12, name: "Cabinet Door Handles", desc: "30-pack brushed nickel stainless steel cabinet handles. 3-inch hole center, 5-inch length for kitchen upgrades.", category: "mobile-homes", link: "https://amzn.to/4mbn6B3", badge: null, icon: "handle" },
+      { id: 13, name: "Under Cabinet Range Hood", desc: "Comfee 30-inch ducted/ductless stainless steel range hood. 200 CFM, 2-speed with reusable filter.", category: "mobile-homes", link: "https://amzn.to/3HzPtdV", badge: null, icon: "appliance" },
+      { id: 14, name: "Floor Vent Covers", desc: "12-pack 4x10\" heavy duty floor registers. Rust-proof white metal heat vent covers for homes.", category: "mobile-homes", link: "https://amzn.to/3I13GR7", badge: null, icon: "vent" },
+      { id: 15, name: "52\" Ceiling Fan with Light", desc: "Modern black flush mount low-profile ceiling fan. Perfect for mobile homes with lower ceilings.", category: "mobile-homes", link: "https://amzn.to/4mFVVzi", badge: null, icon: "fan" },
+      { id: 16, name: "Wall Outlets 20-Pack", desc: "BESTTEN 15-amp decorator wall receptacles with wallplates included. UL listed for residential use.", category: "mobile-homes", link: "https://amzn.to/4n5biAV", badge: "Value Pack", icon: "electrical" },
+      { id: 17, name: "GFCI Outlets 10-Pack", desc: "ELECTECK 15-amp ground fault circuit interrupter outlets with LED indicator. ETL listed with wallplates.", category: "mobile-homes", link: "https://amzn.to/3JCtkfz", badge: null, icon: "electrical" },
+      { id: 18, name: "Keyless Entry Deadbolt", desc: "TEEHO TE001 keypad door lock with 2 backup keys. Auto-lock feature, easy installation, satin nickel finish.", category: "mobile-homes", link: "https://amzn.to/3HVOYuG", badge: null, icon: "lock" },
+      { id: 19, name: "LED Light Bulbs 12-Pack", desc: "100W equivalent A19 daylight bulbs at only 13W usage. 1500 lumens, 5000K, E26 base for any fixture.", category: "mobile-homes", link: "https://amzn.to/3HVP05M", badge: null, icon: "light" },
+      { id: 20, name: "Bathroom Sink Faucets", desc: "2-pack brushed nickel centerset faucets for 3-hole sinks. Includes pop-up drain and supply hoses.", category: "mobile-homes", link: "https://amzn.to/3UThj7Y", badge: null, icon: "faucet" },
+      { id: 21, name: "Combination Lock Boxes", desc: "6-pack key safe solution for real estate, businesses, and property management. Secure combination locks.", category: "mobile-homes", link: "https://amzn.to/3JVaSyG", badge: "Must Have", icon: "lock" },
+      { id: 22, name: "Carbon Monoxide Detector", desc: "Siterwell 10-year battery-operated CO detector with LCD display. ETL listed for home safety.", category: "mobile-homes", link: "https://amzn.to/41tqhwg", badge: "Safety", icon: "safety" },
+      { id: 23, name: "Smoke Detectors 4-Pack", desc: "Hardwired interconnected smoke alarms with 9V battery backup. Interconnects up to 12 units.", category: "mobile-homes", link: "https://amzn.to/3JEz8oT", badge: "Safety", icon: "safety" },
+      { id: 24, name: "Light Switches 10-Pack", desc: "ENERLITES single pole decorator paddle switches. 15-amp, UL listed, white finish with grounding screw.", category: "mobile-homes", link: "https://amzn.to/4nrzNbZ", badge: null, icon: "electrical" },
+      { id: 25, name: "Drywall Screws 1lb", desc: "Grip-Rite #6 x 2\" phillips bugle head coarse thread drywall screws. Sharp point for easy installation.", category: "mobile-homes", link: "https://amzn.to/3Jxz6PF", badge: null, icon: "screw" },
+      { id: 26, name: "Alex Plus Caulk 12-Pack", desc: "Contractor pack white latex caulking. 10.1 fl oz tubes for professional sealing projects.", category: "mobile-homes", link: "https://amzn.to/3MEJfv8", badge: "Bulk", icon: "caulk" },
+      { id: 27, name: "GE Silicone Caulk", desc: "Advanced silicone caulk for kitchen and bathroom applications. White, waterproof, mold-resistant.", category: "mobile-homes", link: "https://amzn.to/4pLllMP", badge: null, icon: "caulk" },
+      { id: 28, name: "Wood Screws 3\" 310-Pack", desc: "FIXLINK deck screws #10 x 3\" with T25 drive. Epoxy coated for outdoor durability.", category: "mobile-homes", link: "https://amzn.to/44caOlz", badge: null, icon: "screw" },
+      { id: 29, name: "Deck Screws 4\"", desc: "Deck Plus #10 x 4\" epoxy coated exterior screws. Torx/star drive included for fence and deck projects.", category: "mobile-homes", link: "https://amzn.to/48lBzqk", badge: null, icon: "screw" },
+      
+      // Tools
+      { id: 30, name: "HVLP Paint Sprayer", desc: "HomeRight Super Finish Max with 3 brass spray tips and patterns. Perfect for furniture, cabinets, and trim.", category: "tools", link: "https://amzn.to/3JYQ6hC", badge: "Pro Tool", icon: "spray" },
+      { id: 31, name: "Battery Backpack Sprayer", desc: "3.2 gallon sprayer with 0-80 PSI adjustable pressure. Compatible with 18V battery, includes 2.0Ah battery and charger.", category: "tools", link: "https://amzn.to/3UOKlpd", badge: null, icon: "spray" },
+      { id: 32, name: "Vegetation Killer 1 Gal", desc: "Ortho GroundClear year-long concentrate. Kills and prevents weeds and grasses for up to 1 year.", category: "tools", link: "https://amzn.to/3USccF2", badge: null, icon: "chemical" },
+      { id: 33, name: "12\" Cordless Chainsaw", desc: "Brushless electric chainsaw with 2x4.0Ah batteries. 26 ft/s speed, 20V powered for wood cutting.", category: "tools", link: "https://amzn.to/4g0Kgbx", badge: "Power Tool", icon: "saw" },
+      { id: 34, name: "Battery Pole Saw", desc: "Litheli 10\" cordless pole saw for tree trimming. 20V battery and charger included.", category: "tools", link: "https://amzn.to/41R7L1d", badge: null, icon: "saw" },
+      { id: 35, name: "Mini Circular Saw", desc: "4-amp 3500RPM corded 4.5\" saw with laser guide. Max cutting depth 1-5/8\" at 90 degrees.", category: "tools", link: "https://amzn.to/3HAuFD7", badge: null, icon: "saw" },
+      { id: 36, name: "Circuit Breaker Finder", desc: "Klein Tools ET300 electrical circuit breaker finder. Locates 120V standard outlet breakers quickly.", category: "tools", link: "https://amzn.to/3I15VE1", badge: "Essential", icon: "electrical" },
+      { id: 37, name: "Bissell Little Green", desc: "Mini portable carpet and upholstery deep cleaner. Perfect for car detailing with HydroRinse self-cleaning tool.", category: "tools", link: "https://amzn.to/3JFvg7a", badge: null, icon: "cleaner" },
+      
+      // Electronics
+      { id: 38, name: "Tapo Smart Deadbolt", desc: "WiFi-enabled keyless door lock with tactile buttons. IP54 weatherproof, BHMA Grade 3, in-app monitoring.", category: "electronics", link: "https://amzn.to/3UPCx6H", badge: "Smart Home", icon: "lock" },
+      { id: 39, name: "U7 Outdoor WiFi 7 AP", desc: "Tri-band outdoor access point for reliable property-wide coverage. Professional-grade networking.", category: "electronics", link: "https://amzn.to/3JFuKWM", badge: null, icon: "wifi" },
+      { id: 40, name: "Signal Booster Antenna", desc: "Waveform QuadPro 4x4 MIMO panel antenna kit for T-Mobile, Verizon, AT&T. Complete 20' cable kit included.", category: "electronics", link: "https://amzn.to/3Vuppnu", badge: null, icon: "antenna" },
+      { id: 41, name: "UPS Battery Backup", desc: "SKE 1250VA/720W uninterruptible power supply with intelligent LCD. Surge protection for computers.", category: "electronics", link: "https://amzn.to/4lQnIf6", badge: null, icon: "power" },
+      { id: 42, name: "Cat 6 Ethernet 100ft", desc: "Ultra Clarity outdoor/indoor 10Gbps ethernet cable. Black, high-speed for gaming, computers, routers.", category: "electronics", link: "https://amzn.to/4n7HTpV", badge: null, icon: "cable" },
+      { id: 43, name: "16.5ft Telescoping Ladder", desc: "JADDUO aluminum ladder with 2 triangle stabilizers. Perfect for attic, RV, and home access.", category: "electronics", link: "https://amzn.to/3HT0bfB", badge: null, icon: "ladder" },
+      { id: 44, name: "DJI Osmo Pocket 3 Kit", desc: "Creator combo vlogging camera with 1\" CMOS, 4K/120fps. 3-axis stabilization, face tracking, mic included.", category: "electronics", link: "https://amzn.to/3UOxYcK", badge: "Content", icon: "camera" },
+      { id: 45, name: "DJI Pocket 3 Filters", desc: "NEEWER magnetic ND/PL filter set. 4-pack with LCD screen protectors for professional video.", category: "electronics", link: "https://amzn.to/4oVk9XP", badge: null, icon: "camera" },
+      { id: 46, name: "DJI Pocket 3 Mount", desc: "Multifunctional magnetic bracket for desktop and mobile use. Upgraded steering holder for content creation.", category: "electronics", link: "https://amzn.to/3HWEoDB", badge: null, icon: "camera" },
+      { id: 47, name: "128GB SD Cards 3-Pack", desc: "Lexar E-Series microSDXC with adapter. 100MB/s, 4K UHD capable, perfect for cameras and devices.", category: "electronics", link: "https://amzn.to/47gNGEZ", badge: null, icon: "storage" },
+      { id: 48, name: "Auto Face Tracking Tripod", desc: "360 rotation phone holder with remote and gesture control. No app required for vlogging and TikTok.", category: "electronics", link: "https://amzn.to/3HNJ7aQ", badge: null, icon: "tripod" },
+      { id: 49, name: "Basic UPS Backup", desc: "CyberPower ST425 standby UPS 425VA/260W with 8 outlets. Compact protection for PC and internet equipment.", category: "electronics", link: "https://amzn.to/3JCqqrc", badge: null, icon: "power" },
+      
+      // Land
+      { id: 50, name: "Orange Marking Flags", desc: "50-pack writable fluorescent flags for lawn, irrigation, survey, and dog training. 15x4x5 inch size.", category: "land", link: "https://amzn.to/4p0naWK", badge: "Essential", icon: "flag" }
+    ];
+
+    const iconTemplates = {
+      roof: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
+      home: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
+      repair: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+      window: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 12h16M12 4v16"/></svg>`,
+      light: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>`,
+      handle: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>`,
+      appliance: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>`,
+      vent: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>`,
+      fan: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M12 9V4M14.5 10l4.33-2.5M14.5 14l4.33 2.5M12 15v5M9.5 14l-4.33 2.5M9.5 10L5.17 7.5"/></svg>`,
+      electrical: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+      lock: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>`,
+      faucet: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>`,
+      safety: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+      screw: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>`,
+      caulk: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>`,
+      spray: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>`,
+      chemical: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>`,
+      saw: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"/></svg>`,
+      cleaner: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>`,
+      wifi: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"/></svg>`,
+      antenna: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.348 14.651a3.75 3.75 0 010-5.303m5.304 0a3.75 3.75 0 010 5.303m-7.425 2.122a6.75 6.75 0 010-9.546m9.546 0a6.75 6.75 0 010 9.546M5.106 18.894c-3.808-3.808-3.808-9.98 0-13.789m13.788 0c3.808 3.808 3.808 9.981 0 13.79M12 12h.008v.007H12V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>`,
+      power: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M4.5 10.5H18V15H4.5v-4.5zM3.75 18h15A2.25 2.25 0 0021 15.75v-6a2.25 2.25 0 00-2.25-2.25h-15A2.25 2.25 0 001.5 9.75v6A2.25 2.25 0 003.75 18z"/></svg>`,
+      cable: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>`,
+      ladder: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 4v16M18 4v16M6 8h12M6 12h12M6 16h12"/></svg>`,
+      camera: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>`,
+      storage: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>`,
+      tripod: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"/></svg>`,
+      flag: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"/></svg>`,
+      chart: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>`,
+      credit: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>`,
+      bank: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"/></svg>`
+    };
+
+    const categoryLabels = {
+      'mobile-homes': 'Mobile Homes',
+      'tools': 'Tools',
+      'electronics': 'Electronics',
+      'land': 'Land'
+    };
+
+    function renderProducts(filter = 'all') {
+      const grid = document.getElementById('productsGrid');
+      const countEl = document.getElementById('productCount');
+      const noResults = document.getElementById('noResults');
+      
+      const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+      
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.add('visible');
+        countEl.textContent = '0';
+        return;
+      }
+      
+      noResults.classList.remove('visible');
+      countEl.textContent = filtered.length;
+      
+      grid.innerHTML = filtered.map(product => `
+        <div class="product-card" data-category="${product.category}">
+          <div class="product-card-header">
+            <div class="product-icon">${iconTemplates[product.icon] || iconTemplates.home}</div>
+            <div class="product-meta">
+              <span class="product-category">${categoryLabels[product.category]}</span>
+              <h3 class="product-title">${product.name}</h3>
+            </div>
+          </div>
+          <div class="product-body">
+            <p class="product-description">${product.desc}</p>
+            <div class="product-cta">
+              <a href="${product.link}" target="_blank" rel="noopener noreferrer" class="product-link">
+                View Product
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
+              ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filter functionality
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        renderProducts(this.dataset.filter);
+      });
+    });
+
+    // Initial render
+    renderProducts();
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.product-card').forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>
