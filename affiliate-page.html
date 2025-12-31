@@ -194,6 +194,19 @@
       border-color: var(--border-gold);
     }
     .product-card:hover::before { transform: scaleX(1); }
+    .product-image {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+      background: var(--bg-cream);
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .product-card:hover .product-image img { transform: scale(1.1); }
     .product-card-header {
       padding: 28px 28px 0;
       display: flex;
@@ -276,12 +289,20 @@
     .product-link svg { width: 14px; height: 14px; transition: transform 0.3s; }
     .product-link:hover svg { transform: translateX(4px); }
     .product-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
       font-size: 0.6875rem;
       font-weight: 600;
       color: var(--forest);
-      background: rgba(61, 79, 68, 0.1);
+      background: rgba(255, 255, 255, 0.95);
       padding: 6px 12px;
       letter-spacing: 0.05em;
+      z-index: 2;
+    }
+    .product-image .product-badge {
+      background: var(--navy);
+      color: var(--gold-light);
     }
 
     /* Category Section Headers */
@@ -741,62 +762,62 @@
       // Mobile Homes - Roofing & Exterior
       { id: 1, name: "HENRY Aluminum Roof Coating", desc: "Premium 5-gallon fibered aluminum roof sealant specifically designed for mobile homes and RVs. Provides long-lasting protection against leaks and UV damage.", category: "mobile-homes", link: "https://amzn.to/46fjB7G", badge: "Best Seller", icon: "roof" },
       { id: 2, name: "Mobile Home Underbelly Kit", desc: "A.A Mobile Flex polyethylene bottom board material. 48\" x 14' kit for professional underbelly repairs and replacements.", category: "mobile-homes", link: "https://amzn.to/424q2rJ", badge: "Essential", icon: "home" },
-      { id: 3, name: "Full Underbelly 16x80", desc: "Complete polyethylene fabric underbelly solution for 16' x 80' mobile homes. Professional-grade material for full replacement projects.", category: "mobile-homes", link: "https://amzn.to/4mFMGiD", badge: null, icon: "home" },
-      { id: 4, name: "Underbelly Repair Patch", desc: "4 inch x 100' flexible mend tape for quick underbelly hole and rip repairs. Essential for mobile home maintenance.", category: "mobile-homes", link: "https://amzn.to/4mzwq2t", badge: null, icon: "repair" },
-      { id: 5, name: "Elastomeric Cool Seal", desc: "Gardner STA-Kool 5-year turbo-dry white elastomeric roof coating. 5-gallon coverage for superior heat reflection.", category: "mobile-homes", link: "https://amzn.to/4phbwqP", badge: "Pro Pick", icon: "roof" },
-      { id: 6, name: "Rubber Flexx Leak Stopper", desc: "Liquid rubber coating for waterproof sealing on boats, roofs, and buildings. Versatile 1-quart black formula.", category: "mobile-homes", link: "https://amzn.to/4lQiPT6", badge: null, icon: "repair" },
-      { id: 7, name: "Roof Repair Fabric", desc: "Saint-Gobain FibaTape 6\" x 25' professional roof repair fabric. Black reinforcement mesh for lasting repairs.", category: "mobile-homes", link: "https://amzn.to/4p0IhIw", badge: null, icon: "repair" },
-      { id: 8, name: "Butyl Waterproof Tape", desc: "ADHES 4\" x 16' aluminum foil butyl sealant tape for RV, window, and EPDM rubber roof patching.", category: "mobile-homes", link: "https://amzn.to/4mIyEg6", badge: "High Quality", icon: "repair" },
-      { id: 9, name: "Window & Door Flashing", desc: "ZIP System Huber 3.75\" x 30' self-adhesive flashing tape for doors and windows. Professional weather sealing.", category: "mobile-homes", link: "https://amzn.to/4nb36PS", badge: null, icon: "window" },
-      { id: 10, name: "Liquid Nails Roof Repair", desc: "10.3 oz roof caulking for reliable leak repairs. Professional-grade adhesive for mobile home roofing.", category: "mobile-homes", link: "https://amzn.to/4lPB0Z2", badge: null, icon: "repair" },
+      { id: 3, name: "Full Underbelly 16x80", desc: "Complete polyethylene fabric underbelly solution for 16' x 80' mobile homes. Professional-grade material for full replacement projects.", category: "mobile-homes", link: "https://amzn.to/4mFMGiD", badge: null, icon: "home", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" },
+      { id: 4, name: "Underbelly Repair Patch", desc: "4 inch x 100' flexible mend tape for quick underbelly hole and rip repairs. Essential for mobile home maintenance.", category: "mobile-homes", link: "https://amzn.to/4mzwq2t", badge: null, icon: "repair", img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&q=80" },
+      { id: 5, name: "Elastomeric Cool Seal", desc: "Gardner STA-Kool 5-year turbo-dry white elastomeric roof coating. 5-gallon coverage for superior heat reflection.", category: "mobile-homes", link: "https://amzn.to/4phbwqP", badge: "Pro Pick", icon: "roof", img: "https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=400&q=80" },
+      { id: 6, name: "Rubber Flexx Leak Stopper", desc: "Liquid rubber coating for waterproof sealing on boats, roofs, and buildings. Versatile 1-quart black formula.", category: "mobile-homes", link: "https://amzn.to/4lQiPT6", badge: null, icon: "repair", img: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=400&q=80" },
+      { id: 7, name: "Roof Repair Fabric", desc: "Saint-Gobain FibaTape 6\" x 25' professional roof repair fabric. Black reinforcement mesh for lasting repairs.", category: "mobile-homes", link: "https://amzn.to/4p0IhIw", badge: null, icon: "repair", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" },
+      { id: 8, name: "Butyl Waterproof Tape", desc: "ADHES 4\" x 16' aluminum foil butyl sealant tape for RV, window, and EPDM rubber roof patching.", category: "mobile-homes", link: "https://amzn.to/4mIyEg6", badge: "High Quality", icon: "repair", img: "https://images.unsplash.com/photo-1558618047-f4b511e1c5b6?w=400&q=80" },
+      { id: 9, name: "Window & Door Flashing", desc: "ZIP System Huber 3.75\" x 30' self-adhesive flashing tape for doors and windows. Professional weather sealing.", category: "mobile-homes", link: "https://amzn.to/4nb36PS", badge: null, icon: "window", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" },
+      { id: 10, name: "Liquid Nails Roof Repair", desc: "10.3 oz roof caulking for reliable leak repairs. Professional-grade adhesive for mobile home roofing.", category: "mobile-homes", link: "https://amzn.to/4lPB0Z2", badge: null, icon: "repair", img: "https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=400&q=80" },
       
       // Mobile Homes - Interior
-      { id: 11, name: "LED Flush Mount Lights", desc: "Super slim 12-inch 5000K LED ceiling lights. 12-pack bulk option perfect for complete mobile home remodels.", category: "mobile-homes", link: "https://amzn.to/41txo7U", badge: "Bulk Pack", icon: "light" },
-      { id: 12, name: "Cabinet Door Handles", desc: "30-pack brushed nickel stainless steel cabinet handles. 3-inch hole center, 5-inch length for kitchen upgrades.", category: "mobile-homes", link: "https://amzn.to/4mbn6B3", badge: null, icon: "handle" },
-      { id: 13, name: "Under Cabinet Range Hood", desc: "Comfee 30-inch ducted/ductless stainless steel range hood. 200 CFM, 2-speed with reusable filter.", category: "mobile-homes", link: "https://amzn.to/3HzPtdV", badge: null, icon: "appliance" },
-      { id: 14, name: "Floor Vent Covers", desc: "12-pack 4x10\" heavy duty floor registers. Rust-proof white metal heat vent covers for homes.", category: "mobile-homes", link: "https://amzn.to/3I13GR7", badge: null, icon: "vent" },
-      { id: 15, name: "52\" Ceiling Fan with Light", desc: "Modern black flush mount low-profile ceiling fan. Perfect for mobile homes with lower ceilings.", category: "mobile-homes", link: "https://amzn.to/4mFVVzi", badge: null, icon: "fan" },
-      { id: 16, name: "Wall Outlets 20-Pack", desc: "BESTTEN 15-amp decorator wall receptacles with wallplates included. UL listed for residential use.", category: "mobile-homes", link: "https://amzn.to/4n5biAV", badge: "Value Pack", icon: "electrical" },
-      { id: 17, name: "GFCI Outlets 10-Pack", desc: "ELECTECK 15-amp ground fault circuit interrupter outlets with LED indicator. ETL listed with wallplates.", category: "mobile-homes", link: "https://amzn.to/3JCtkfz", badge: null, icon: "electrical" },
-      { id: 18, name: "Keyless Entry Deadbolt", desc: "TEEHO TE001 keypad door lock with 2 backup keys. Auto-lock feature, easy installation, satin nickel finish.", category: "mobile-homes", link: "https://amzn.to/3HVOYuG", badge: null, icon: "lock" },
-      { id: 19, name: "LED Light Bulbs 12-Pack", desc: "100W equivalent A19 daylight bulbs at only 13W usage. 1500 lumens, 5000K, E26 base for any fixture.", category: "mobile-homes", link: "https://amzn.to/3HVP05M", badge: null, icon: "light" },
-      { id: 20, name: "Bathroom Sink Faucets", desc: "2-pack brushed nickel centerset faucets for 3-hole sinks. Includes pop-up drain and supply hoses.", category: "mobile-homes", link: "https://amzn.to/3UThj7Y", badge: null, icon: "faucet" },
-      { id: 21, name: "Combination Lock Boxes", desc: "6-pack key safe solution for real estate, businesses, and property management. Secure combination locks.", category: "mobile-homes", link: "https://amzn.to/3JVaSyG", badge: "Must Have", icon: "lock" },
-      { id: 22, name: "Carbon Monoxide Detector", desc: "Siterwell 10-year battery-operated CO detector with LCD display. ETL listed for home safety.", category: "mobile-homes", link: "https://amzn.to/41tqhwg", badge: "Safety", icon: "safety" },
-      { id: 23, name: "Smoke Detectors 4-Pack", desc: "Hardwired interconnected smoke alarms with 9V battery backup. Interconnects up to 12 units.", category: "mobile-homes", link: "https://amzn.to/3JEz8oT", badge: "Safety", icon: "safety" },
-      { id: 24, name: "Light Switches 10-Pack", desc: "ENERLITES single pole decorator paddle switches. 15-amp, UL listed, white finish with grounding screw.", category: "mobile-homes", link: "https://amzn.to/4nrzNbZ", badge: null, icon: "electrical" },
-      { id: 25, name: "Drywall Screws 1lb", desc: "Grip-Rite #6 x 2\" phillips bugle head coarse thread drywall screws. Sharp point for easy installation.", category: "mobile-homes", link: "https://amzn.to/3Jxz6PF", badge: null, icon: "screw" },
-      { id: 26, name: "Alex Plus Caulk 12-Pack", desc: "Contractor pack white latex caulking. 10.1 fl oz tubes for professional sealing projects.", category: "mobile-homes", link: "https://amzn.to/3MEJfv8", badge: "Bulk", icon: "caulk" },
-      { id: 27, name: "GE Silicone Caulk", desc: "Advanced silicone caulk for kitchen and bathroom applications. White, waterproof, mold-resistant.", category: "mobile-homes", link: "https://amzn.to/4pLllMP", badge: null, icon: "caulk" },
-      { id: 28, name: "Wood Screws 3\" 310-Pack", desc: "FIXLINK deck screws #10 x 3\" with T25 drive. Epoxy coated for outdoor durability.", category: "mobile-homes", link: "https://amzn.to/44caOlz", badge: null, icon: "screw" },
-      { id: 29, name: "Deck Screws 4\"", desc: "Deck Plus #10 x 4\" epoxy coated exterior screws. Torx/star drive included for fence and deck projects.", category: "mobile-homes", link: "https://amzn.to/48lBzqk", badge: null, icon: "screw" },
+      { id: 11, name: "LED Flush Mount Lights", desc: "Super slim 12-inch 5000K LED ceiling lights. 12-pack bulk option perfect for complete mobile home remodels.", category: "mobile-homes", link: "https://amzn.to/41txo7U", badge: "Bulk Pack", icon: "light", img: "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=400&q=80" },
+      { id: 12, name: "Cabinet Door Handles", desc: "30-pack brushed nickel stainless steel cabinet handles. 3-inch hole center, 5-inch length for kitchen upgrades.", category: "mobile-homes", link: "https://amzn.to/4mbn6B3", badge: null, icon: "handle", img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80" },
+      { id: 13, name: "Under Cabinet Range Hood", desc: "Comfee 30-inch ducted/ductless stainless steel range hood. 200 CFM, 2-speed with reusable filter.", category: "mobile-homes", link: "https://amzn.to/3HzPtdV", badge: null, icon: "appliance", img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80" },
+      { id: 14, name: "Floor Vent Covers", desc: "12-pack 4x10\" heavy duty floor registers. Rust-proof white metal heat vent covers for homes.", category: "mobile-homes", link: "https://amzn.to/3I13GR7", badge: null, icon: "vent", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" },
+      { id: 15, name: "52\" Ceiling Fan with Light", desc: "Modern black flush mount low-profile ceiling fan. Perfect for mobile homes with lower ceilings.", category: "mobile-homes", link: "https://amzn.to/4mFVVzi", badge: null, icon: "fan", img: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=400&q=80" },
+      { id: 16, name: "Wall Outlets 20-Pack", desc: "BESTTEN 15-amp decorator wall receptacles with wallplates included. UL listed for residential use.", category: "mobile-homes", link: "https://amzn.to/4n5biAV", badge: "Value Pack", icon: "electrical", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" },
+      { id: 17, name: "GFCI Outlets 10-Pack", desc: "ELECTECK 15-amp ground fault circuit interrupter outlets with LED indicator. ETL listed with wallplates.", category: "mobile-homes", link: "https://amzn.to/3JCtkfz", badge: null, icon: "electrical", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" },
+      { id: 18, name: "Keyless Entry Deadbolt", desc: "TEEHO TE001 keypad door lock with 2 backup keys. Auto-lock feature, easy installation, satin nickel finish.", category: "mobile-homes", link: "https://amzn.to/3HVOYuG", badge: null, icon: "lock", img: "https://images.unsplash.com/photo-1558002038-1055907df827?w=400&q=80" },
+      { id: 19, name: "LED Light Bulbs 12-Pack", desc: "100W equivalent A19 daylight bulbs at only 13W usage. 1500 lumens, 5000K, E26 base for any fixture.", category: "mobile-homes", link: "https://amzn.to/3HVP05M", badge: null, icon: "light", img: "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=400&q=80" },
+      { id: 20, name: "Bathroom Sink Faucets", desc: "2-pack brushed nickel centerset faucets for 3-hole sinks. Includes pop-up drain and supply hoses.", category: "mobile-homes", link: "https://amzn.to/3UThj7Y", badge: null, icon: "faucet", img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=80" },
+      { id: 21, name: "Combination Lock Boxes", desc: "6-pack key safe solution for real estate, businesses, and property management. Secure combination locks.", category: "mobile-homes", link: "https://amzn.to/3JVaSyG", badge: "Must Have", icon: "lock", img: "https://images.unsplash.com/photo-1558002038-1055907df827?w=400&q=80" },
+      { id: 22, name: "Carbon Monoxide Detector", desc: "Siterwell 10-year battery-operated CO detector with LCD display. ETL listed for home safety.", category: "mobile-homes", link: "https://amzn.to/41tqhwg", badge: "Safety", icon: "safety", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" },
+      { id: 23, name: "Smoke Detectors 4-Pack", desc: "Hardwired interconnected smoke alarms with 9V battery backup. Interconnects up to 12 units.", category: "mobile-homes", link: "https://amzn.to/3JEz8oT", badge: "Safety", icon: "safety", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" },
+      { id: 24, name: "Light Switches 10-Pack", desc: "ENERLITES single pole decorator paddle switches. 15-amp, UL listed, white finish with grounding screw.", category: "mobile-homes", link: "https://amzn.to/4nrzNbZ", badge: null, icon: "electrical", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" },
+      { id: 25, name: "Drywall Screws 1lb", desc: "Grip-Rite #6 x 2\" phillips bugle head coarse thread drywall screws. Sharp point for easy installation.", category: "mobile-homes", link: "https://amzn.to/3Jxz6PF", badge: null, icon: "screw", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" },
+      { id: 26, name: "Alex Plus Caulk 12-Pack", desc: "Contractor pack white latex caulking. 10.1 fl oz tubes for professional sealing projects.", category: "mobile-homes", link: "https://amzn.to/3MEJfv8", badge: "Bulk", icon: "caulk", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" },
+      { id: 27, name: "GE Silicone Caulk", desc: "Advanced silicone caulk for kitchen and bathroom applications. White, waterproof, mold-resistant.", category: "mobile-homes", link: "https://amzn.to/4pLllMP", badge: null, icon: "caulk", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" },
+      { id: 28, name: "Wood Screws 3\" 310-Pack", desc: "FIXLINK deck screws #10 x 3\" with T25 drive. Epoxy coated for outdoor durability.", category: "mobile-homes", link: "https://amzn.to/44caOlz", badge: null, icon: "screw", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" },
+      { id: 29, name: "Deck Screws 4\"", desc: "Deck Plus #10 x 4\" epoxy coated exterior screws. Torx/star drive included for fence and deck projects.", category: "mobile-homes", link: "https://amzn.to/48lBzqk", badge: null, icon: "screw", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" },
       
       // Tools
-      { id: 30, name: "HVLP Paint Sprayer", desc: "HomeRight Super Finish Max with 3 brass spray tips and patterns. Perfect for furniture, cabinets, and trim.", category: "tools", link: "https://amzn.to/3JYQ6hC", badge: "Pro Tool", icon: "spray" },
-      { id: 31, name: "Battery Backpack Sprayer", desc: "3.2 gallon sprayer with 0-80 PSI adjustable pressure. Compatible with 18V battery, includes 2.0Ah battery and charger.", category: "tools", link: "https://amzn.to/3UOKlpd", badge: null, icon: "spray" },
-      { id: 32, name: "Vegetation Killer 1 Gal", desc: "Ortho GroundClear year-long concentrate. Kills and prevents weeds and grasses for up to 1 year.", category: "tools", link: "https://amzn.to/3USccF2", badge: null, icon: "chemical" },
-      { id: 33, name: "12\" Cordless Chainsaw", desc: "Brushless electric chainsaw with 2x4.0Ah batteries. 26 ft/s speed, 20V powered for wood cutting.", category: "tools", link: "https://amzn.to/4g0Kgbx", badge: "Power Tool", icon: "saw" },
-      { id: 34, name: "Battery Pole Saw", desc: "Litheli 10\" cordless pole saw for tree trimming. 20V battery and charger included.", category: "tools", link: "https://amzn.to/41R7L1d", badge: null, icon: "saw" },
-      { id: 35, name: "Mini Circular Saw", desc: "4-amp 3500RPM corded 4.5\" saw with laser guide. Max cutting depth 1-5/8\" at 90 degrees.", category: "tools", link: "https://amzn.to/3HAuFD7", badge: null, icon: "saw" },
-      { id: 36, name: "Circuit Breaker Finder", desc: "Klein Tools ET300 electrical circuit breaker finder. Locates 120V standard outlet breakers quickly.", category: "tools", link: "https://amzn.to/3I15VE1", badge: "Essential", icon: "electrical" },
-      { id: 37, name: "Bissell Little Green", desc: "Mini portable carpet and upholstery deep cleaner. Perfect for car detailing with HydroRinse self-cleaning tool.", category: "tools", link: "https://amzn.to/3JFvg7a", badge: null, icon: "cleaner" },
+      { id: 30, name: "HVLP Paint Sprayer", desc: "HomeRight Super Finish Max with 3 brass spray tips and patterns. Perfect for furniture, cabinets, and trim.", category: "tools", link: "https://amzn.to/3JYQ6hC", badge: "Pro Tool", icon: "spray", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" },
+      { id: 31, name: "Battery Backpack Sprayer", desc: "3.2 gallon sprayer with 0-80 PSI adjustable pressure. Compatible with 18V battery, includes 2.0Ah battery and charger.", category: "tools", link: "https://amzn.to/3UOKlpd", badge: null, icon: "spray", img: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80" },
+      { id: 32, name: "Vegetation Killer 1 Gal", desc: "Ortho GroundClear year-long concentrate. Kills and prevents weeds and grasses for up to 1 year.", category: "tools", link: "https://amzn.to/3USccF2", badge: null, icon: "chemical", img: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80" },
+      { id: 33, name: "12\" Cordless Chainsaw", desc: "Brushless electric chainsaw with 2x4.0Ah batteries. 26 ft/s speed, 20V powered for wood cutting.", category: "tools", link: "https://amzn.to/4g0Kgbx", badge: "Power Tool", icon: "saw", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" },
+      { id: 34, name: "Battery Pole Saw", desc: "Litheli 10\" cordless pole saw for tree trimming. 20V battery and charger included.", category: "tools", link: "https://amzn.to/41R7L1d", badge: null, icon: "saw", img: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80" },
+      { id: 35, name: "Mini Circular Saw", desc: "4-amp 3500RPM corded 4.5\" saw with laser guide. Max cutting depth 1-5/8\" at 90 degrees.", category: "tools", link: "https://amzn.to/3HAuFD7", badge: null, icon: "saw", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" },
+      { id: 36, name: "Circuit Breaker Finder", desc: "Klein Tools ET300 electrical circuit breaker finder. Locates 120V standard outlet breakers quickly.", category: "tools", link: "https://amzn.to/3I15VE1", badge: "Essential", icon: "electrical", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" },
+      { id: 37, name: "Bissell Little Green", desc: "Mini portable carpet and upholstery deep cleaner. Perfect for car detailing with HydroRinse self-cleaning tool.", category: "tools", link: "https://amzn.to/3JFvg7a", badge: null, icon: "cleaner", img: "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=400&q=80" },
       
       // Electronics
-      { id: 38, name: "Tapo Smart Deadbolt", desc: "WiFi-enabled keyless door lock with tactile buttons. IP54 weatherproof, BHMA Grade 3, in-app monitoring.", category: "electronics", link: "https://amzn.to/3UPCx6H", badge: "Smart Home", icon: "lock" },
-      { id: 39, name: "U7 Outdoor WiFi 7 AP", desc: "Tri-band outdoor access point for reliable property-wide coverage. Professional-grade networking.", category: "electronics", link: "https://amzn.to/3JFuKWM", badge: null, icon: "wifi" },
-      { id: 40, name: "Signal Booster Antenna", desc: "Waveform QuadPro 4x4 MIMO panel antenna kit for T-Mobile, Verizon, AT&T. Complete 20' cable kit included.", category: "electronics", link: "https://amzn.to/3Vuppnu", badge: null, icon: "antenna" },
-      { id: 41, name: "UPS Battery Backup", desc: "SKE 1250VA/720W uninterruptible power supply with intelligent LCD. Surge protection for computers.", category: "electronics", link: "https://amzn.to/4lQnIf6", badge: null, icon: "power" },
-      { id: 42, name: "Cat 6 Ethernet 100ft", desc: "Ultra Clarity outdoor/indoor 10Gbps ethernet cable. Black, high-speed for gaming, computers, routers.", category: "electronics", link: "https://amzn.to/4n7HTpV", badge: null, icon: "cable" },
-      { id: 43, name: "16.5ft Telescoping Ladder", desc: "JADDUO aluminum ladder with 2 triangle stabilizers. Perfect for attic, RV, and home access.", category: "electronics", link: "https://amzn.to/3HT0bfB", badge: null, icon: "ladder" },
-      { id: 44, name: "DJI Osmo Pocket 3 Kit", desc: "Creator combo vlogging camera with 1\" CMOS, 4K/120fps. 3-axis stabilization, face tracking, mic included.", category: "electronics", link: "https://amzn.to/3UOxYcK", badge: "Content", icon: "camera" },
-      { id: 45, name: "DJI Pocket 3 Filters", desc: "NEEWER magnetic ND/PL filter set. 4-pack with LCD screen protectors for professional video.", category: "electronics", link: "https://amzn.to/4oVk9XP", badge: null, icon: "camera" },
-      { id: 46, name: "DJI Pocket 3 Mount", desc: "Multifunctional magnetic bracket for desktop and mobile use. Upgraded steering holder for content creation.", category: "electronics", link: "https://amzn.to/3HWEoDB", badge: null, icon: "camera" },
-      { id: 47, name: "128GB SD Cards 3-Pack", desc: "Lexar E-Series microSDXC with adapter. 100MB/s, 4K UHD capable, perfect for cameras and devices.", category: "electronics", link: "https://amzn.to/47gNGEZ", badge: null, icon: "storage" },
-      { id: 48, name: "Auto Face Tracking Tripod", desc: "360 rotation phone holder with remote and gesture control. No app required for vlogging and TikTok.", category: "electronics", link: "https://amzn.to/3HNJ7aQ", badge: null, icon: "tripod" },
-      { id: 49, name: "Basic UPS Backup", desc: "CyberPower ST425 standby UPS 425VA/260W with 8 outlets. Compact protection for PC and internet equipment.", category: "electronics", link: "https://amzn.to/3JCqqrc", badge: null, icon: "power" },
+      { id: 38, name: "Tapo Smart Deadbolt", desc: "WiFi-enabled keyless door lock with tactile buttons. IP54 weatherproof, BHMA Grade 3, in-app monitoring.", category: "electronics", link: "https://amzn.to/3UPCx6H", badge: "Smart Home", icon: "lock", img: "https://images.unsplash.com/photo-1558002038-1055907df827?w=400&q=80" },
+      { id: 39, name: "U7 Outdoor WiFi 7 AP", desc: "Tri-band outdoor access point for reliable property-wide coverage. Professional-grade networking.", category: "electronics", link: "https://amzn.to/3JFuKWM", badge: null, icon: "wifi", img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&q=80" },
+      { id: 40, name: "Signal Booster Antenna", desc: "Waveform QuadPro 4x4 MIMO panel antenna kit for T-Mobile, Verizon, AT&T. Complete 20' cable kit included.", category: "electronics", link: "https://amzn.to/3Vuppnu", badge: null, icon: "antenna", img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&q=80" },
+      { id: 41, name: "UPS Battery Backup", desc: "SKE 1250VA/720W uninterruptible power supply with intelligent LCD. Surge protection for computers.", category: "electronics", link: "https://amzn.to/4lQnIf6", badge: null, icon: "power", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80" },
+      { id: 42, name: "Cat 6 Ethernet 100ft", desc: "Ultra Clarity outdoor/indoor 10Gbps ethernet cable. Black, high-speed for gaming, computers, routers.", category: "electronics", link: "https://amzn.to/4n7HTpV", badge: null, icon: "cable", img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&q=80" },
+      { id: 43, name: "16.5ft Telescoping Ladder", desc: "JADDUO aluminum ladder with 2 triangle stabilizers. Perfect for attic, RV, and home access.", category: "electronics", link: "https://amzn.to/3HT0bfB", badge: null, icon: "ladder", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80" },
+      { id: 44, name: "DJI Osmo Pocket 3 Kit", desc: "Creator combo vlogging camera with 1\" CMOS, 4K/120fps. 3-axis stabilization, face tracking, mic included.", category: "electronics", link: "https://amzn.to/3UOxYcK", badge: "Content", icon: "camera", img: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&q=80" },
+      { id: 45, name: "DJI Pocket 3 Filters", desc: "NEEWER magnetic ND/PL filter set. 4-pack with LCD screen protectors for professional video.", category: "electronics", link: "https://amzn.to/4oVk9XP", badge: null, icon: "camera", img: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&q=80" },
+      { id: 46, name: "DJI Pocket 3 Mount", desc: "Multifunctional magnetic bracket for desktop and mobile use. Upgraded steering holder for content creation.", category: "electronics", link: "https://amzn.to/3HWEoDB", badge: null, icon: "camera", img: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&q=80" },
+      { id: 47, name: "128GB SD Cards 3-Pack", desc: "Lexar E-Series microSDXC with adapter. 100MB/s, 4K UHD capable, perfect for cameras and devices.", category: "electronics", link: "https://amzn.to/47gNGEZ", badge: null, icon: "storage", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80" },
+      { id: 48, name: "Auto Face Tracking Tripod", desc: "360 rotation phone holder with remote and gesture control. No app required for vlogging and TikTok.", category: "electronics", link: "https://amzn.to/3HNJ7aQ", badge: null, icon: "tripod", img: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&q=80" },
+      { id: 49, name: "Basic UPS Backup", desc: "CyberPower ST425 standby UPS 425VA/260W with 8 outlets. Compact protection for PC and internet equipment.", category: "electronics", link: "https://amzn.to/3JCqqrc", badge: null, icon: "power", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80" },
       
       // Land
-      { id: 50, name: "Orange Marking Flags", desc: "50-pack writable fluorescent flags for lawn, irrigation, survey, and dog training. 15x4x5 inch size.", category: "land", link: "https://amzn.to/4p0naWK", badge: "Essential", icon: "flag" }
+      { id: 50, name: "Orange Marking Flags", desc: "50-pack writable fluorescent flags for lawn, irrigation, survey, and dog training. 15x4x5 inch size.", category: "land", link: "https://amzn.to/4p0naWK", badge: "Essential", icon: "flag", img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=80" }
     ];
 
     const iconTemplates = {
@@ -840,6 +861,21 @@
       'land': 'Land'
     };
 
+    // Smart image path helper - automatically generates path from product ID
+    // Image naming convention: product-{id}.jpg (e.g., product-1.jpg, product-2.jpg)
+    // Store images in: assets/products/ folder
+    function getProductImage(product) {
+      // Priority 1: If img property exists and is a LOCAL path (not URL), use it
+      if (product.img && !product.img.startsWith('http')) {
+        return product.img;
+      }
+      
+      // Priority 2: Use local image path based on product ID
+      // Automatically looks for: assets/products/product-{id}.jpg
+      // This is the recommended approach - just name your images by product ID!
+      return `assets/products/product-${product.id}.jpg`;
+    }
+
     function renderProducts(filter = 'all') {
       const grid = document.getElementById('productsGrid');
       const countEl = document.getElementById('productCount');
@@ -859,6 +895,10 @@
       
       grid.innerHTML = filtered.map(product => `
         <div class="product-card" data-category="${product.category}">
+          <div class="product-image">
+            <img src="${getProductImage(product)}" alt="${product.name}" loading="lazy" onerror="this.style.display='none';">
+            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+          </div>
           <div class="product-card-header">
             <div class="product-icon">${iconTemplates[product.icon] || iconTemplates.home}</div>
             <div class="product-meta">
@@ -873,7 +913,6 @@
                 View Product
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
               </a>
-              ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
             </div>
           </div>
         </div>

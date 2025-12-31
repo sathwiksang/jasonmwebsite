@@ -1,0 +1,47 @@
+═══════════════════════════════════════════════════════════════
+  PRODUCT IMAGES - QUICK START GUIDE
+═══════════════════════════════════════════════════════════════
+
+📁 WHERE TO PUT IMAGES:
+   assets/products/
+
+🏷️ HOW TO NAME THEM:
+   product-{ID}.jpg
+   
+   Examples:
+   • Product ID 1  →  product-1.jpg
+   • Product ID 15 →  product-15.jpg
+   • Product ID 50 →  product-50.jpg
+
+✅ STEP-BY-STEP:
+
+1. Download product image from Amazon/website
+2. Find the product ID in affiliate-page.html
+   (Look for: { id: 1, name: "Product Name"... })
+3. Rename image to: product-{ID}.jpg
+   Example: If ID is 5, name it: product-5.jpg
+4. Save to: assets/products/product-5.jpg
+5. Done! Image will show automatically.
+
+🆕 ADDING NEW PRODUCTS:
+
+When you add a new product:
+1. Give it the next available ID (currently 50, so next is 51)
+2. Save image as: product-51.jpg
+3. Put it in: assets/products/
+4. That's it! No code changes needed.
+
+📋 CURRENT PRODUCT IDS:
+
+Mobile Homes: 1-29
+Tools:        30-37
+Electronics:  38-49
+Land:         50
+
+💡 TIPS:
+• Use .jpg format (recommended)
+• Keep images under 200KB
+• Square images work best (400x400px or larger)
+• Use lowercase: product-1.jpg (not Product-1.JPG)
+
+═══════════════════════════════════════════════════════════════
